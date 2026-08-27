@@ -2,3 +2,4 @@ node_modules/
 .next/
 .DS_Store
 *.CR2
+asetMA/
