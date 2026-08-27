@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FAQ, MEDIA, Media, PageIntro, Shell } from '@/components/event-site'
+import { FAQ, MEDIA, Media, Shell } from '@/components/event-site'
 
 export default function AboutPage() {
   return (
@@ -19,16 +19,19 @@ export default function AboutPage() {
         <h1>Made for the<br /><em>journey.</em></h1>
       </section>
 
-      {/* Section About Intro dengan Video Dekan */}
+      {/* Section About Intro */}
       <section className="about-intro">
-        <Media 
-          src="/images/DEKAN MA (1).mov" /* PATH YANG SUDAH DIPERBAIKI */
-          className="about-media" 
-          label="SAMBUTAN DEKAN FT UNJ" 
-          controls={true} /* Mengaktifkan tombol play & suara */
-        />
+        {/* Wrapper baru untuk mengontrol ukuran 80% & jarak ke teks */}
+        <div className="about-media-wrapper">
+          <Media 
+            src="/images/DEKAN MA (1).mov" 
+            className="about-media" 
+            label="SAMBUTAN DEKAN FT UNJ" 
+            controls={true} 
+          />
+        </div>
         
-        <div>
+        <div className="about-content">
           <span className="eyebrow">OUR INTENTION</span>
           <p className="big-copy">
             Surat MABIM Fakultas Teknik UNJ
