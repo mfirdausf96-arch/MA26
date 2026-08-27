@@ -68,7 +68,7 @@ export default function AboutPage() {
             <em>chapter starts here.</em>
           </h2>
         </div>
-        <Link className="button button-yellow" href="mailto:hello@muslimadventure.id">
+        <Link className="button button-yellow" href="https://bit.ly/RegistrasiPesertaMA2026">
           Register your interest <span>↗</span>
         </Link>
       </section>
