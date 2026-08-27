@@ -259,7 +259,7 @@ a { color: inherit; text-decoration: none; }
 .about-intro {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr; /* Memperkecil porsi kolom media */
-  gap: 24px; /* Memperdekat jarak antara video dan teks (sebelumnya biasa 40-60px) */
+  gap:10px; /* Memperdekat jarak antara video dan teks (sebelumnya biasa 40-60px) */
   align-items: center;
   padding: 20px 5vw;
 }
