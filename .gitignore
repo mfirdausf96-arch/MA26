@@ -3,3 +3,6 @@ node_modules/
 .DS_Store
 *.CR2
 asetMA/
+
+# build artifacts
+tsconfig.tsbuildinfo
