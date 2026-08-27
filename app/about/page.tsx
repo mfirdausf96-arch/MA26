@@ -19,24 +19,24 @@ export default function AboutPage() {
         <h1>Made for the<br /><em>journey.</em></h1>
       </section>
 
-      {/* Section About Intro */}
+      {/* Section About Intro dengan Video Dekan */}
       <section className="about-intro">
-        {/* Wrapper baru untuk mengontrol ukuran 80% & jarak ke teks */}
         <div className="about-media-wrapper">
           <Media 
             src="/images/DEKAN MA (1).mov" 
             className="about-media" 
+            label="SAMBUTAN DEKAN FT UNJ" 
             controls={true} 
-          />
+           />
         </div>
-        
+  
         <div className="about-content">
-          <span className="eyebrow">Sambutan Dekan FT UNJ</span>
+          <span className="eyebrow">OUR INTENTION</span>
           <p className="big-copy">
             Surat MABIM Fakultas Teknik UNJ
           </p>
           <p>
-            Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman dan pembinaan oleh Mentor FSI Al-Biruni, agenda ini merupakan rangkaian kegiatan yang dicantumkan dalam surat agenda mabim Fakultas Teknik UNJ. 
+           Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman dan pembinaan oleh Mentor FSI Al-Biruni, agenda ini merupakan rangkaian kegiatan yang dicantumkan dalam surat agenda mabim Fakultas Teknik UNJ. 
           </p>
         </div>
       </section>
