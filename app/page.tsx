@@ -26,14 +26,14 @@ export default function Home() {
       <section
         className="hero"
         style={{
-          backgroundImage: `linear-gradient(rgba(10, 31, 43, 0.45), rgba(10, 31, 43, 0.8)), url('${MEDIA.heroBg}')`,
+          backgroundImage: `linear-gradient(100deg, rgba(7, 22, 32, 0.92) 0%, rgba(7, 22, 32, 0.72) 45%, rgba(7, 22, 32, 0.5) 100%), url('${MEDIA.heroBg}')`,
         }}
       >
         <div className="hero-copy">
           <span className="eyebrow">26–28 September 2026 · Madani Forest, Subang</span>
           <h1>
-            Muslim<br />
-            <em>Adventure 2026</em>
+            Muslim <em>Adventure</em><br />
+            <em>2026</em>
           </h1>
           <p>
             Tiga hari dua malam berkemah di Madani Forest, Subang. Agenda wajib mahasiswa baru
@@ -94,7 +94,7 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="stats block-ink">
+      <section className="stats">
         <Stat number="3" label="Hari, 2 malam" />
         <Stat number="8" label="Agenda kegiatan" />
         <Stat number="1" label="Angkatan, satu tenda" />
@@ -127,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* 7. Info Praktis */}
-      <section className="section-pad block-paper" id="info">
+      <section className="section-pad info-section" id="info">
         <Reveal className="section-head">
           <span className="eyebrow">Info penting</span>
           <h2>Tanggal, lokasi, dan bawaan</h2>
@@ -136,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="section-pad block-paper faq-section">
+      <section className="section-pad faq-section">
         <Reveal>
           <span className="eyebrow">FAQ</span>
           <div className="section-head">

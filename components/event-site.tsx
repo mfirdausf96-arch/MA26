@@ -27,6 +27,8 @@ import {
   Bus,
   HeartPulse,
   Signal,
+  Mail,
+  AtSign,
 } from 'lucide-react'
 import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, REGISTER_URL, SURAT_MABIM_URL, WA_URL } from '@/lib/media'
 import { Polaroid } from './bits'
@@ -82,16 +84,16 @@ export function Footer() {
         </div>
         <div className="footer-links">
           <div className="footer-col">
-            <strong>Jelajahi</strong>
-            {nav.map(([label, href]) => (
-              <Link key={href} href={href}>{label}</Link>
-            ))}
-          </div>
-          <div className="footer-col">
             <strong>Kontak</strong>
-            <Link href="mailto:muslimadventure@gmail.com">muslimadventure@gmail.com</Link>
-            <Link href="https://instagram.com/temanbertumbuh" target="_blank">IG @temanbertumbuh</Link>
-            <Link href={WA_URL} target="_blank">WhatsApp Panitia</Link>
+            <Link href="mailto:muslimadventure@gmail.com">
+              <Mail size={16} strokeWidth={1.8} /> muslimadventure@gmail.com
+            </Link>
+            <Link href="https://instagram.com/temanbertumbuh" target="_blank">
+              <AtSign size={16} strokeWidth={1.8} /> @temanbertumbuh
+            </Link>
+            <Link href={WA_URL} target="_blank">
+              <MessageCircle size={16} strokeWidth={1.8} /> WhatsApp Panitia
+            </Link>
           </div>
         </div>
       </div>
@@ -377,7 +379,7 @@ export function AfterMovie() {
     <section
       className="aftermovie"
       id="aftermovie"
-      style={{ backgroundImage: `url('${MEDIA.statementBg}')` }}
+      style={{ backgroundImage: `url('${MEDIA.registerBg}')` }}
     >
       <div className="aftermovie-inner">
         <span className="eyebrow">After Movie</span>
