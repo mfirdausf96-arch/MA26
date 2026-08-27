@@ -213,17 +213,20 @@ export function DekanSection() {
         <Media src={MEDIA.sambutanDekan} className="dekan-media" label="Sambutan Dekan FT UNJ" controls />
       </div>
       <div className="dekan-copy">
-        <span className="eyebrow">Sambutan Dekan Fakultas Teknik UNJ</span>
-        <p className="big-copy">Kenapa Muslim Adventure masuk agenda MABIM</p>
-        <p>
-          Muslim Adventure 2026 adalah agenda pembinaan diri dan spiritual bersama mentor FSI Al-Biruni.
-          Kegiatan ini tercantum dalam surat agenda MABIM Fakultas Teknik UNJ.
-        </p>
+        <span className="eyebrow">Apa kata Dekan Fakultas Teknik UNJ</span>
+        <blockquote className="dekan-quote">
+          Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman,
+          dengan pembinaan oleh Mentor FSI Al-Biruni.
+        </blockquote>
+        <div className="dekan-attribution">
+          <strong>Dekan Fakultas Teknik</strong>
+          <span>Universitas Negeri Jakarta</span>
+        </div>
         <div className="mabim-notice">
           <Megaphone size={18} strokeWidth={1.7} />
           <p>
-            Wajib diikuti oleh seluruh mahasiswa baru Fakultas Teknik, sesuai Surat Pemberitahuan Dekan FT UNJ
-            No. B/2472/5.FT/KM/VII/2026.
+            Tercantum dalam surat agenda MABIM dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
+            Surat Pemberitahuan Dekan FT UNJ No. B/2472/5.FT/KM/VII/2026.
           </p>
         </div>
         <Link href={SURAT_MABIM_URL} target="_blank" className="arrow-link">
