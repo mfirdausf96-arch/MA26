@@ -274,7 +274,7 @@ a { color: inherit; text-decoration: none; }
 .about-media {
   width: 100%;
   aspect-ratio: 9 / 16; /* Menjaga bentuk video tetap proporsional */
-  border-radius: 12px;
+  border-radius: 1px;
   overflow: hidden;
 }
 
@@ -287,6 +287,6 @@ a { color: inherit; text-decoration: none; }
   }
 
   .about-media-wrapper {
-    width: 100%; /* Di HP gunakan lebar penuh agar tetap nyaman ditonton */
+    width: 60%; /* Di HP gunakan lebar penuh agar tetap nyaman ditonton */
   }
 }
