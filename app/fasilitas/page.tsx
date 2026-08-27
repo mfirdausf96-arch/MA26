@@ -48,7 +48,7 @@ export default function FasilitasPage() {
         className="quote"
         style={{
           // Hapus atau comment baris ini jika ingin tetap menggunakan warna dasar light
-          backgroundImage: `linear-gradient(rgba(7, 25, 29, 0.85), rgba(7, 25, 29, 0.85)), url('/images/cpm35 2025-09-20 115217.961.jpg')`,
+          backgroundImage: `linear-gradient(rgba(7, 25, 29, 0.85), rgba(7, 25, 29, 0.85)), url('/images/cpm35 2025-09-20 113902.033.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
