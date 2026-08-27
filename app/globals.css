@@ -273,7 +273,7 @@ a { color: inherit; text-decoration: none; }
 /* Memastikan elemen video di dalamnya menyesuaikan rasio wrapper */
 .about-media {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Menjaga bentuk video tetap proporsional */
+  aspect-ratio: 9 / 16; /* Menjaga bentuk video tetap proporsional */
   border-radius: 12px;
   overflow: hidden;
 }
