@@ -1,74 +1,158 @@
 import Link from 'next/link'
-import { MEDIA, Media, RecapButton, Shell, Stat } from '@/components/event-site'
+import {
+  AfterMovie,
+  BenefitList,
+  DekanSection,
+  FacilityGrid,
+  FAQ,
+  Gallery,
+  InfoPraktis,
+  PilarGrid,
+  RecapButton,
+  RegisterCTA,
+  Shell,
+  Stat,
+  Timeline,
+} from '@/components/event-site'
+import { Marquee, Reveal } from '@/components/bits'
+import { MEDIA } from '@/lib/media'
+
+const tickerItems = ['Muslim Adventure 2026', '26–28 September', 'Madani Forest, Subang', 'MABIM Fakultas Teknik UNJ']
 
 export default function Home() {
   return (
     <Shell>
-      {/* 
-        Hero Section dengan Background Photo + Gradient Overlay 
-      */}
-      <section 
-        className="hero" 
+      {/* 1. Hero */}
+      <section
+        className="hero"
         style={{
-          backgroundImage: `linear-gradient(rgba(7, 25, 29, 0.85), rgba(7, 25, 29, 0.85)), url('${MEDIA.heroBg}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: `linear-gradient(100deg, rgba(7, 22, 32, 0.92) 0%, rgba(7, 22, 32, 0.72) 45%, rgba(7, 22, 32, 0.5) 100%), url('${MEDIA.heroBg}')`,
         }}
       >
-        {/* Teks Kiri */}
         <div className="hero-copy">
-          <span className="eyebrow">
-            Cozy Atmosphere, Mindful Purpose, Fellowship in Radiant Energy
-          </span>
+          <span className="eyebrow">26–28 September 2026 · Madani Forest, Subang</span>
           <h1>
-            Muslim<br />
-            <em>Adventure 2026</em>
+            Muslim <em>Adventure</em><br />
+            <em>2026</em>
           </h1>
           <p>
-            Muslim Adventure is where faith meets the wild. A three-day journey
-            to reconnect, recharge, and grow together.
+            Tiga hari dua malam berkemah di Madani Forest, Subang. Agenda wajib mahasiswa baru
+            Fakultas Teknik UNJ, digarap FSI Al-Biruni.
           </p>
           <div className="hero-actions">
-            <Link className="button" href="/about#register">
-              Join the Adventure <span>↗</span>
+            <Link className="button" href="#daftar">
+              Daftar Sekarang
             </Link>
             <RecapButton />
           </div>
         </div>
-
-        {/* Note Tanggal di Kiri Bawah */}
-        <div className="hero-note">
-          25 - 27 <br />
-          <span>AUGUST 2026 · MADANI FOREST, SUBANG</span>
-        </div>
       </section>
 
-      {/* Statement Section */}
-      <section className="statement">
-        <span className="eyebrow">WHY MUSLIM ADVENTURE?</span>
-        <h2>
-          More than a trip.<br />
-          <em>A meaningful core memory.</em>
-        </h2>
-        <div className="statement-bottom">
-          <p>
-            Cozy, Mindful, & Meaningful. Suasana nyaman & menyatu dengan alam,
-            Mentoring interaktif & personal, Fasilitas lengkap, Panitia
-            responsif, Refleksi diri, dan Interaksi dengan Sang Pencipta
-          </p>
-          <Link className="arrow-link" href="/benefit">
-            Discover the experience <span>↗</span>
-          </Link>
-        </div>
+      <Marquee items={tickerItems} tone="sunset" />
+
+      {/* 2. Tentang Acara / Konsep */}
+      <section className="section-pad block-paper" id="tentang">
+        <Reveal>
+          <div className="section-head">
+            <span className="eyebrow">Yang kami pegang</span>
+            <h2>Cozy, mindful, meaningful</h2>
+            <p className="section-lead">
+              Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman
+              dan pembinaan oleh Mentor FSI Al-Biruni. Agenda ini merupakan rangkaian kegiatan yang dicantumkan
+              dalam surat agenda MABIM Fakultas Teknik UNJ.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <PilarGrid />
+        </Reveal>
       </section>
 
-      {/* Stats Section */}
+      {/* Sambutan Dekan / Legitimasi MABIM */}
+      <Reveal>
+        <DekanSection />
+      </Reveal>
+
+      {/* 3. Manfaat */}
+      <section className="section-pad block-ink why-join" id="manfaat">
+        <Reveal className="why-join-copy">
+          <span className="eyebrow">Kenapa ikut</span>
+          <h2>
+            Yang kamu bawa pulang<br />
+            <em>selain foto.</em>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <BenefitList />
+        </Reveal>
+      </section>
+
+      {/* Fasilitas */}
+      <section className="section-pad block-paper" id="fasilitas">
+        <Reveal className="section-head">
+          <span className="eyebrow">Fasilitas</span>
+          <h2>Sudah termasuk biaya pendaftaran</h2>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <FacilityGrid />
+        </Reveal>
+      </section>
+
+      {/* Stats */}
       <section className="stats">
-        <Stat number="03" label="Days in nature" />
-        <Stat number="05+" label="Meaningful activities" />
-        <Stat number="∞" label="New connections" />
+        <Stat number="3" label="Hari, 2 malam" />
+        <Stat number="8" label="Agenda kegiatan" />
+        <Stat number="1" label="Angkatan, satu tenda" />
       </section>
+
+      {/* 4. Rangkaian Kegiatan */}
+      <section className="section-pad timeline-section" id="kegiatan">
+        <Reveal className="section-head">
+          <span className="eyebrow">Rundown</span>
+          <h2>Kegiatan selama tiga hari</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Timeline />
+        </Reveal>
+      </section>
+
+      {/* After Movie */}
+      <AfterMovie />
+
+      {/* 5. Galeri Foto */}
+      <section className="section-pad corkboard" id="galeri">
+        <Reveal className="section-head">
+          <span className="eyebrow">Dokumentasi</span>
+          <h2>
+            Muslim Adventure<br />
+            <em>tahun lalu.</em>
+          </h2>
+        </Reveal>
+        <Gallery />
+      </section>
+
+      {/* 7. Info Praktis */}
+      <section className="section-pad info-section" id="info">
+        <Reveal className="section-head">
+          <span className="eyebrow">Info penting</span>
+          <h2>Tanggal, lokasi, dan bawaan</h2>
+        </Reveal>
+        <InfoPraktis />
+      </section>
+
+      {/* FAQ */}
+      <section className="section-pad faq-section">
+        <Reveal>
+          <span className="eyebrow">FAQ</span>
+          <div className="section-head">
+            <h2>Yang sering ditanyakan</h2>
+          </div>
+        </Reveal>
+        <FAQ />
+      </section>
+
+      {/* 8. CTA / Pendaftaran */}
+      <RegisterCTA />
     </Shell>
   )
 }
