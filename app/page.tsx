@@ -36,6 +36,7 @@ export default function Home() {
 
           <div className="hero-note">
             <div className="hero-note-number">25 - 27</div>
+            <p></p>
             <div className="hero-note-text">AUGUST 2026 · MADANI FOREST, SUBANG</div>
           </div>
         </div>
