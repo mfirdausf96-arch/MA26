@@ -24,6 +24,9 @@ html { background: var(--navy); scroll-behavior: smooth; }
 body { margin: 0; background: var(--navy); color: var(--foreground); font-family: Arial, sans-serif; }
 a { color: inherit; text-decoration: none; }
 
+/* ==========================================
+   HEADER & NAVIGATION
+   ========================================== */
 .site-header { align-items: center; display: flex; justify-content: space-between; left: 0; padding: 24px 5vw; position: absolute; right: 0; top: 0; z-index: 10; }
 .brand { align-items: center; display: flex; font-size: 11px; font-weight: 800; letter-spacing: .08em; line-height: .9; }
 .brand-mark { height: 48px; margin-right: 10px; width: 48px; }
@@ -36,15 +39,13 @@ a { color: inherit; text-decoration: none; }
 .menu-button { background: none; border: 0; color: var(--foreground); display: none; font-size: 12px; text-transform: uppercase; }
 
 /* ==========================================
-   HERO SECTION (Dengan Background Photo)
+   HERO SECTION
    ========================================== */
 .hero {
   min-height: 520px;
   overflow: hidden;
-  padding: 140px 5vw 362px;
+  padding: 140px 5vw 100px;
   position: relative;
-
-  /* Tambahkan 4 baris ini */
   background-image: linear-gradient(rgba(7, 25, 29, 0.75), rgba(7, 25, 29, 0.75)), url('/images/IMG_9549.JPG') !important;
   background-size: cover !important;
   background-position: center !important;
@@ -52,29 +53,42 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-copy { max-width: 650px; position: relative; z-index: 2; }
-.hero-copy .eyebrow { font-size: 16px; }
 .eyebrow { color: var(--yellow); font-size: 10px; font-weight: 800; letter-spacing: .16em; }
-.hero h1, .page-intro h1, .statement h2, .page-cta h2, .quote h2, .register h2 { font-size: clamp(62px, 10vw, 145px); letter-spacing: -.07em; line-height: .83; margin: 32px 0; text-transform: uppercase; }
+.hero-copy .eyebrow { font-size: 16px; }
+
+.hero h1, .page-intro h1, .statement h2, .page-cta h2, .quote h2, .register h2 { 
+  font-size: clamp(42px, 8vw, 135px); 
+  letter-spacing: -.05em; 
+  line-height: .88; 
+  margin: 24px 0; 
+  text-transform: uppercase; 
+}
 .hero h1 em, h2 em, h1 em { color: var(--blue); font-family: Georgia, serif; font-weight: 400; text-transform: none; }
 .hero-copy p { color: #c6ceca; font-size: 17px; line-height: 1.55; max-width: 370px; }
 .hero-actions { align-items: center; display: flex; gap: 24px; margin-top: 34px; }
+
 .button, .recap-button { border: 1px solid var(--yellow); border-radius: 30px; display: inline-flex; font-size: 16px; font-weight: 800; gap: 18px; padding: 15px 21px; }
 .button { background: var(--yellow); color: var(--navy); }
 .button span { color: #000000 !important; }
 .recap-button { background: transparent; color: var(--foreground); }
 .play { color: var(--yellow); font-size: 12px; }
 
-.media { background-position: center; background-size: cover; border-radius: 22px; min-height: 280px; position: relative; }
+/* Media Component Default */
+.media { background-position: center; background-size: cover; border-radius: 22px; position: relative; }
 .hero-media { height: 380px; opacity: .85; position: absolute; right: 5vw; top: 140px; width: 42vw; z-index: 2; }
-  .media-label { bottom: -50px; color: var(--yellow); font-size: 40px; font-weight: 800; left: 0; letter-spacing: .13em; position: absolute; }
-.about-media .media-label { display: none; }
+.media-label { bottom: 16px; color: var(--yellow); font-size: 14px; font-weight: 800; left: 16px; letter-spacing: .13em; position: absolute; z-index: 3; }
+
 .hero-note { bottom: 40px; color: var(--yellow); font-size: 24px; font-weight: 800; left: 5vw; line-height: .9; position: absolute; z-index: 2; }
 .hero-note span { color: var(--foreground); font-size: 24px; letter-spacing: .1em; }
 
-.statement, .stats, .page-intro, .benefit-grid, .facilities-layout, .about-intro, .faq-section, .register, .page-cta, .quote { padding-left: 10vw; padding-right: 10vw; }
+/* Section Spacing Presets */
+.statement, .stats, .page-intro, .benefit-grid, .facilities-layout, .about-intro, .faq-section, .register, .page-cta, .quote { 
+  padding-left: 10vw; 
+  padding-right: 10vw; 
+}
 
 /* ==========================================
-   SECTION LAIN DENGAN FOTO BACKGROUND (OPSIONAL)
+   STATEMENT & STATS SECTIONS
    ========================================== */
 .statement { 
   background-image: linear-gradient(rgba(244, 241, 232, 0.8), rgba(244, 241, 232, 0.8)), url('/images/IMG_2802.JPG');
@@ -82,128 +96,104 @@ a { color: inherit; text-decoration: none; }
   background-position: center;
   background-repeat: no-repeat;
   color: var(--navy); 
-  padding-bottom: 110px; 
-  padding-top: 110px; 
+  padding-bottom: 90px; 
+  padding-top: 90px; 
 }
-.statement .eyebrow { color: var(--blue); font-size: 30px; }
-.page-intro .eyebrow { color: var(--blue); }
-.statement h2 { font-size: clamp(52px, 8vw, 96px); }
+.statement .eyebrow { color: var(--blue); font-size: 20px; }
+.statement h2 { font-size: clamp(42px, 7vw, 96px); }
 .statement h2 em { color: var(--blue); }
-.statement-bottom { align-items: end; display: flex; justify-content: space-between; }
+.statement-bottom { align-items: flex-end; display: flex; justify-content: space-between; }
 .statement-bottom p { font-size: 18px; line-height: 1.5; max-width: 330px; }
 .arrow-link { font-size: 12px; font-weight: 800; }
 .arrow-link span { color: #000000 !important; }
 
-.stats { display: flex; gap: 10vw; padding-bottom: 80px; padding-top: 47px; }
-.stat strong { color: var(--yellow); display: block; font-family: "Montserrat", sans-serif; font-size: 70px; font-weight: 400; }
+.stats { display: flex; gap: 10vw; padding-bottom: 60px; padding-top: 40px; }
+.stat strong { color: var(--yellow); display: block; font-family: "Montserrat", sans-serif; font-size: clamp(48px, 6vw, 70px); font-weight: 400; }
 .stat:nth-child(3) strong { text-align: center; }
 .stat span { color: var(--muted); font-size: 11px; text-transform: uppercase; }
 
-.footer { display: flex; justify-content: space-between; padding: 18px 10vw; }
-.footer h2 { font-size: 65px; letter-spacing: -.06em; line-height: .8; margin: 25px 0; text-transform: uppercase; }
-.footer .eyebrow { font-size: 30px; }
-.footer h2 em { color: var(--blue); font-family: Georgia, serif; font-weight: 400; text-transform: none; }
-.footer-right { align-self: end; color: var(--muted); font-size: 18px; line-height: 1.5; }
-.footer-right .arrow-link { color: var(--foreground); display: block; font-size: 14px; margin-top: 25px; }
-.footer-right .arrow-link span { color: var(--yellow) !important; }
-
+/* ==========================================
+   GRID & CONTENT SECTIONS
+   ========================================== */
 .page-intro { 
   background-image: linear-gradient(rgba(7, 25, 29, 0.85), rgba(7, 25, 29, 0.85)), url('/images/IMG_9492.JPG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-bottom: 100px; 
-  padding-top: 190px; 
+  padding-bottom: 80px; 
+  padding-top: 160px; 
 }
-.page-intro h1 { font-size: clamp(65px, 11vw, 155px); }
+.page-intro .eyebrow { color: var(--blue); }
 
-.benefit-grid { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 100px; padding-top: 100px; scrollbar-width: thin; }
+.benefit-grid { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 80px; padding-top: 80px; scrollbar-width: thin; }
 .feature, .feature-image { border-radius: 22px; flex: 0 0 clamp(300px, calc((100% - 16px) / 2), 520px); min-height: 390px; }
 .feature { padding: 38px; position: relative; }
 .feature-no { font-size: 11px; font-weight: 800; }
 .feature h2 { bottom: 30px; font-size: 44px; left: 38px; line-height: .9; margin: 0; position: absolute; text-transform: uppercase; }
 .feature h2 em { color: inherit; }
 .feature p { bottom: 40px; font-size: 14px; line-height: 1.4; max-width: 190px; position: absolute; right: 35px; }
-.feature-blue { 
-  background-image: url('/images/IMG_8943.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white; 
-}
-.feature-yellow { 
-  background-image: url('/images/IMG_2785.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white; 
-}
-.feature-dark { 
-  background-image: url('/images/IMG_9492.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 1px solid var(--border); 
-  color: white;
-}
-.feature-white { 
-  background-image: url('/images/IMG_2802.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-}
-.feature-image { min-height: 390px; }
 
-/* Page CTA Background Photo */
-.page-cta { 
-  background-image: url('/images/IMG_9555.JPG');
-  background-size: cover;
-  background-position: center;
-  color: var(--navy); 
-  display: flex; 
-  justify-content: space-between; 
-  padding-bottom: 120px; 
-  padding-top: 100px; 
-}
-.page-cta h2, .quote h2 { font-size: clamp(55px, 8vw, 110px); }
-.page-cta h2 em { color: var(--navy); }
+.feature-blue { background-image: url('/images/IMG_8943.JPG'); background-size: cover; background-position: center; color: white; }
+.feature-yellow { background-image: url('/images/IMG_2785.JPG'); background-size: cover; background-position: center; color: white; }
+.feature-dark { background-image: url('/images/IMG_9492.JPG'); background-size: cover; background-position: center; border: 1px solid var(--border); color: white; }
+.feature-white { background-image: url('/images/IMG_2802.JPG'); background-size: cover; background-position: center; color: white; }
 
-.facilities-layout { display: grid; gap: 60px; grid-template-columns: 1fr 1fr; padding-bottom: 120px; padding-top: 51px; }
+.facilities-layout { display: grid; gap: 60px; grid-template-columns: 1fr 1fr; padding-bottom: 90px; padding-top: 50px; }
 .facility-item { align-items: center; border-bottom: 1px solid var(--border); display: flex; gap: 24px; justify-content: space-between; padding: 21px 0; }
 .facility-item span { color: var(--yellow); font-size: 10px; }
 .facility-item strong { flex: 1; font-size: 15px; }
 .facility-item i { color: var(--yellow); font-style: normal; }
 .tall-media { min-height: 540px; }
 
-.quote { 
-  background-image: url('/images/IMG_2777.JPG');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: var(--navy); 
-  padding-bottom: 120px; 
-  padding-top: 100px; 
+/* ==========================================
+   ABOUT INTRO SECTION (DESKTOP)
+   ========================================== */
+.about-intro { 
+  display: grid; 
+  grid-template-columns: 360px 1fr; /* Kolom kiri mengunci video portrait, kanan teks */
+  gap: 40px; 
+  align-items: center; 
+  padding-top: 60px;
+  padding-bottom: 60px; 
 }
-.quote .eyebrow { color: var(--blue); }
-.quote h2 em { color: var(--blue); }
 
-.about-intro { align-items: start; display: grid; gap: 10px; grid-template-columns: auto 1fr; padding-bottom: 0px; }
-.about-media { min-height: auto; width: auto; margin-bottom: 0px; position: relative; }
-.about-media video { display: inline; width: auto; height: auto; max-width: none; border-radius: 12px; }
-.big-copy { font-family: Georgia, serif; font-size: 34px; line-height: 1.1; }
+.about-media-wrapper {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.about-media { 
+  width: 100%;
+  aspect-ratio: 9 / 16; /* Menjaga video rapat dalam format Portrait tanpa gap besar */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.about-media .media-label { display: none; }
+
+.big-copy { 
+  font-family: Georgia, serif; 
+  font-size: clamp(24px, 3vw, 34px); 
+  line-height: 1.25; 
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .about-intro p:not(.big-copy) { color: var(--muted); font-size: 15px; line-height: 1.7; }
 
-.faq-section { background: var(--paper); color: var(--navy); display: grid; gap: 10vw; grid-template-columns: .7fr 1fr; padding-bottom: 110px; padding-top: 110px; }
+/* ==========================================
+   FAQ & REGISTER SECTIONS
+   ========================================== */
+.faq-section { background: var(--paper); color: var(--navy); display: grid; gap: 10vw; grid-template-columns: .7fr 1fr; padding-bottom: 90px; padding-top: 90px; }
 .faq-section .eyebrow { color: var(--blue); }
-.faq-section h2 { font-size: 70px; line-height: .85; text-transform: uppercase; }
+.faq-section h2 { font-size: clamp(42px, 6vw, 70px); line-height: .85; text-transform: uppercase; }
 .faq-section h2 em { color: var(--blue); }
 .faq details { border-bottom: 1px solid rgba(7,25,29,.25); padding: 22px 0; }
 .faq summary { cursor: pointer; display: flex; font-size: 16px; font-weight: 700; justify-content: space-between; list-style: none; }
 .faq summary span { font-size: 24px; font-weight: 400; }
 .faq p { color: #53615d; line-height: 1.6; max-width: 460px; }
 
-/* Register Section Background Photo */
 .register { 
   background-image: linear-gradient(rgba(7, 25, 29, 0.85), rgba(7, 25, 29, 0.85)), url('/images/IMG_3242.JPG');
   background-size: cover;
@@ -211,83 +201,110 @@ a { color: inherit; text-decoration: none; }
   align-items: center; 
   display: flex; 
   justify-content: space-between; 
-  padding-bottom: 120px; 
-  padding-top: 120px; 
+  padding-bottom: 90px; 
+  padding-top: 90px; 
 }
-.register h2 { font-size: clamp(48px, 7vw, 100px); }
-.button-yellow { background: var(--yellow); }
+
+.page-cta, .quote { 
+  background-size: cover;
+  background-position: center;
+  color: var(--navy); 
+  display: flex; 
+  justify-content: space-between; 
+  padding-bottom: 90px; 
+  padding-top: 90px; 
+}
+
+.footer { display: flex; justify-content: space-between; padding: 40px 10vw; }
+.footer h2 { font-size: clamp(38px, 6vw, 65px); letter-spacing: -.06em; line-height: .8; margin: 25px 0; text-transform: uppercase; }
+.footer .eyebrow { font-size: 20px; }
+.footer h2 em { color: var(--blue); font-family: Georgia, serif; font-weight: 400; text-transform: none; }
+.footer-right { align-self: flex-end; color: var(--muted); font-size: 16px; line-height: 1.5; }
 
 .modal { align-items: center; background: rgba(7,25,29,.95); display: flex; inset: 0; justify-content: center; padding: 8vw; position: fixed; z-index: 20; }
 .modal-media { height: 70vh; width: 80vw; }
 .modal-close { background: none; border: 0; color: var(--yellow); cursor: pointer; position: absolute; right: 30px; top: 25px; }
 
-/* Responsive Layout */
-@media (max-width: 700px) { 
-  .site-header { padding: 20px; }
+/* ==========================================
+   RESPONSIVE MOBILE (MAX-WIDTH: 768PX)
+   ========================================== */
+@media (max-width: 768px) { 
+  .site-header { padding: 16px 20px; }
   .menu-button { display: block; position: relative; z-index: 2; }
-  .nav { align-items: flex-start; background: var(--navy); display: none; flex-direction: column; left: 0; padding: 90px 20px 30px; position: absolute; right: 0; top: 0; }
-  .nav.open { display: flex; }
   
-  .hero { min-height: 720px; padding: 130px 20px 40px; }
+  .nav { 
+    align-items: flex-start; 
+    background: var(--navy); 
+    display: none; 
+    flex-direction: column; 
+    left: 0; 
+    padding: 80px 20px 30px; 
+    position: absolute; 
+    right: 0; 
+    top: 0; 
+  }
+  .nav.open { display: flex; }
 
-  .hero-media { height: 320px; left: 20px; right: 20px; top: 430px; width: auto; }
-
-  .hero-note { bottom: 25px; left: 20px; }
-
-  .hero h1 { font-size: 56px; }
-}
-
-  .statement, .stats, .page-intro, .benefit-grid, .facilities-layout, .about-intro, .faq-section, .register, .page-cta, .quote { padding-left: 20px; padding-right: 20px; }
-  .statement { padding-bottom: 70px; padding-top: 70px; }
-  .statement-bottom, .register, .page-cta { align-items: flex-start; flex-direction: column; gap: 30px; }
-  .stats { gap: 30px; padding-bottom: 60px; padding-top: 60px; }
-  .stat strong { font-size: 45px; }
-  .footer { flex-direction: column; gap: 30px; padding: 70px 20px; }
-  .footer h2 { font-size: 55px; }
-  .page-intro { padding-bottom: 70px; padding-top: 140px; }
-  .benefit-grid { gap: 12px; padding-bottom: 70px; }
-  .facilities-layout, .about-intro, .faq-section { display: flex; flex-direction: column; padding-bottom: 70px; }
-  .feature, .feature-image { flex-basis: 84vw; min-height: 330px; }
-  .feature-no { font-size: 9px; }
-  .feature h2 { font-size: 24px; }
-  .feature p { font-size: 11px; }
-  .tall-media, .about-media { min-height: 380px; }
-  .faq-section { padding-bottom: 80px; padding-top: 80px; }
-  .faq-section h2 { font-size: 58px; }
-  .register { padding-bottom: 80px; padding-top: 80px; } 
-
-  /* Layout Section About */
-.about-intro {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr; /* Memperkecil porsi kolom media */
-  gap:10px; /* Memperdekat jarak antara video dan teks (sebelumnya biasa 40-60px) */
-  align-items: center;
-  padding: 20px 5vw;
-}
-
-/* Container untuk membuat video berukuran 80% */
-.about-media-wrapper {
-  width: 80%; /* Mengatur lebar elemen menjadi 80% */
-  margin: 0 auto; /* Menjaga posisi di tengah kolomnya */
-}
-
-/* Memastikan elemen video di dalamnya menyesuaikan rasio wrapper */
-.about-media {
-  width: 100%;
-  aspect-ratio: 9 / 16; /* Menjaga bentuk video tetap proporsional */
-  border-radius: 1px;
-  overflow: hidden;
-}
-
-/* Responsif untuk Layar HP */
-@media (max-width: 768px) {
-  .about-intro {
-    grid-template-columns: 1fr; /* Menjadi 1 kolom di HP */
-    gap: 20px;
-    padding: 40px 20px;
+  /* Hero Mobile FIX: Menghindari Tumpang Tindih Teks */
+  .hero { 
+    min-height: auto; 
+    padding: 120px 20px 40px; 
+    display: flex;
+    flex-direction: column;
   }
 
-  .about-media-wrapper {
-    width: 60%; /* Di HP gunakan lebar penuh agar tetap nyaman ditonton */
+  .hero-media { 
+    position: relative; 
+    top: auto; right: auto; left: auto; 
+    width: 100%; 
+    height: 240px; 
+    margin: 24px 0; 
   }
+
+  .hero-note { 
+    position: static; 
+    font-size: 28px; 
+    margin-top: 24px; 
+  }
+  .hero-note span { font-size: 16px; }
+
+  /* Penyesuaian Padding Layar HP */
+  .statement, .stats, .page-intro, .benefit-grid, .facilities-layout, .about-intro, .faq-section, .register, .page-cta, .quote { 
+    padding-left: 20px; 
+    padding-right: 20px; 
+  }
+
+  .statement { padding-top: 50px; padding-bottom: 50px; }
+  .statement-bottom, .register, .page-cta { align-items: flex-start; flex-direction: column; gap: 24px; }
+  
+  .stats { flex-direction: column; gap: 24px; padding-top: 40px; padding-bottom: 40px; }
+  .stat strong { font-size: 42px; }
+
+  /* Section About Intro Mobile FIX */
+  .about-intro { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 24px; 
+    padding-top: 40px; 
+    padding-bottom: 40px; 
+  }
+  
+  .about-media-wrapper { 
+    width: 80%; /* Video portrait tetap proporsional dan nyaman ditonton di HP */
+    max-width: 280px; 
+  }
+
+  .facilities-layout, .faq-section { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 24px;
+    padding-top: 50px;
+    padding-bottom: 50px; 
+  }
+
+  .feature, .feature-image { flex-basis: 84vw; min-height: 320px; }
+  .feature h2 { font-size: 28px; }
+  
+  .footer { flex-direction: column; gap: 30px; padding: 50px 20px; }
+  .footer-right { align-self: flex-start; }
 }
