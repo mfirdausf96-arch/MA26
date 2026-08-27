@@ -28,7 +28,7 @@ import {
   HeartPulse,
   Signal,
 } from 'lucide-react'
-import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, REGISTER_URL, SURAT_MABIM_URL } from '@/lib/media'
+import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, REGISTER_URL, SURAT_MABIM_URL, WA_URL } from '@/lib/media'
 import { Polaroid } from './bits'
 
 const nav = [
@@ -91,7 +91,7 @@ export function Footer() {
             <strong>Kontak</strong>
             <Link href="mailto:muslimadventure@gmail.com">muslimadventure@gmail.com</Link>
             <Link href="https://instagram.com/temanbertumbuh" target="_blank">IG @temanbertumbuh</Link>
-            <Link href="https://wa.me/6281288421988" target="_blank">WhatsApp Panitia</Link>
+            <Link href={WA_URL} target="_blank">WhatsApp Panitia</Link>
           </div>
         </div>
       </div>
@@ -212,11 +212,10 @@ export function DekanSection() {
       </div>
       <div className="dekan-copy">
         <span className="eyebrow">Sambutan Dekan Fakultas Teknik UNJ</span>
-        <p className="big-copy">Bagian dari rangkaian MABIM Fakultas Teknik UNJ</p>
+        <p className="big-copy">Kenapa Muslim Adventure masuk agenda MABIM</p>
         <p>
-          Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritualitas bersama teman, dengan
-          pembinaan oleh mentor FSI Al-Biruni. Kegiatan ini termasuk dalam rangkaian yang dicantumkan dalam surat
-          agenda MABIM Fakultas Teknik UNJ.
+          Muslim Adventure 2026 adalah agenda pembinaan diri dan spiritual bersama mentor FSI Al-Biruni.
+          Kegiatan ini tercantum dalam surat agenda MABIM Fakultas Teknik UNJ.
         </p>
         <div className="mabim-notice">
           <Megaphone size={18} strokeWidth={1.7} />
@@ -246,17 +245,17 @@ const pilars = [
   {
     photo: '/images/galeri-9.jpg',
     title: 'Cozy',
-    desc: 'Tenda yang nyaman, api unggun, dan obrolan hangat hingga larut malam.',
+    desc: 'Tenda, api unggun, dan obrolan yang biasanya baru berhenti lewat tengah malam.',
   },
   {
     photo: '/images/galeri-5.jpg',
     title: 'Mindful & Meaningful',
-    desc: 'Waktu untuk hening, mendengarkan alam, dan mendekatkan diri kepada Allah.',
+    desc: 'Ada jeda untuk diam sejenak, jauh dari notifikasi dan tugas kuliah.',
   },
   {
     photo: '/images/galeri-4.jpg',
-    title: 'Pelayanan yang Sigap',
-    desc: 'Panitia sigap dan logistik rapi, sehingga kamu bisa fokus menikmati momennya.',
+    title: 'Panitia Siap',
+    desc: 'Logistik sudah diurus panitia. Kamu tinggal datang dan ikut rangkaiannya.',
   },
 ]
 
@@ -276,10 +275,10 @@ export function PilarGrid() {
 }
 
 const benefits = [
-  { icon: Sunrise, text: 'Suasana nyaman & menyatu dengan alam' },
-  { icon: UsersRound, text: 'Mentoring interaktif & personal bareng kakak FSI Al-Biruni' },
-  { icon: Tent, text: 'Fasilitas lengkap & panitia responsif' },
-  { icon: Sparkles, text: 'Refleksi diri & interaksi dengan Sang Pencipta' },
+  { icon: Sunrise, text: 'Bangun pagi di dataran tinggi, bukan di kamar kos' },
+  { icon: UsersRound, text: 'Mentoring bareng kakak FSI Al-Biruni, bukan seminar satu arah' },
+  { icon: Tent, text: 'Kenal satu angkatan sebelum semester benar-benar mulai' },
+  { icon: Sparkles, text: 'Waktu untuk berpikir ulang soal arah kuliah dan ibadah' },
 ]
 
 export function BenefitList() {
@@ -296,12 +295,12 @@ export function BenefitList() {
 }
 
 const facilities = [
-  { icon: GraduationCap, title: 'Training & Mentoring', desc: 'Pembinaan langsung oleh mentor FSI Al-Biruni.' },
-  { icon: Tent, title: 'Tenda 3 Hari 2 Malam', desc: 'Perlengkapan berkemah disiapkan panitia.' },
-  { icon: Gift, title: 'Welcome Drink & Merchandise', desc: 'Sambutan hangat dan merchandise resmi.' },
-  { icon: Bus, title: 'Transportasi Pulang-Pergi', desc: 'Bis pariwisata dari titik keberangkatan.' },
-  { icon: HeartPulse, title: 'Pendampingan Kesehatan', desc: 'Tim KSR UNJ dan fasilitas UKS di lokasi.' },
-  { icon: Signal, title: 'Jaringan Memadai', desc: 'Sinyal tetap terjangkau selama kegiatan.' },
+  { icon: GraduationCap, title: 'Training & mentoring', desc: 'Dipandu mentor FSI Al-Biruni.' },
+  { icon: Tent, title: 'Tenda 3 hari 2 malam', desc: 'Sudah disiapkan panitia di lokasi.' },
+  { icon: Gift, title: 'Welcome drink & merchandise', desc: 'Dibagikan di hari pertama.' },
+  { icon: Bus, title: 'Transportasi pulang-pergi', desc: 'Bis pariwisata. Titik kumpul menyusul.' },
+  { icon: HeartPulse, title: 'Tim kesehatan', desc: 'KSR UNJ standby, ada UKS di lokasi.' },
+  { icon: Signal, title: 'Sinyal aman', desc: 'Masih bisa kabari orang rumah.' },
 ]
 
 export function FacilityGrid() {
@@ -320,14 +319,14 @@ export function FacilityGrid() {
 }
 
 const timeline = [
-  { icon: Flag, title: 'Tracking & Keberangkatan', desc: 'Peserta berangkat bersama menuju Madani Forest, Subang, menggunakan bis yang telah disediakan panitia.' },
-  { icon: Sunrise, title: 'Salat Berjamaah', desc: 'Mengawali rangkaian kegiatan dengan salat berjamaah di udara pagi yang sejuk.' },
-  { icon: UsersRound, title: 'Mentoring & Sharing', desc: 'Berdiskusi dan berbagi cerita seputar kehidupan kampus dan keimanan bersama mentor dari FSI Al-Biruni.' },
-  { icon: ChefHat, title: 'Cooking Time', desc: 'Memasak bersama dalam kelompok kecil, melatih kerja sama sekaligus mempererat kebersamaan.' },
-  { icon: Tent, title: 'Outbound', desc: 'Rangkaian permainan kelompok yang melatih kekompakan dan kerja sama tim.' },
-  { icon: Utensils, title: 'Mindful Eating', desc: 'Makan dengan tenang dan penuh kesadaran, sebagai bentuk rasa syukur atas nikmat yang sering terlewat.' },
-  { icon: PartyPopper, title: 'Night Festival', desc: 'Malam kebersamaan dengan api unggun, musik, dan berbagi cerita antar peserta.' },
-  { icon: Sprout, title: 'Berkebun & Treasure Hunt', desc: 'Menutup rangkaian kegiatan dengan berkebun dan permainan pencarian petunjuk terakhir.' },
+  { icon: Flag, title: 'Tracking & Keberangkatan', desc: 'Berangkat bareng satu rombongan naik bis dari titik kumpul.' },
+  { icon: Sunrise, title: 'Salat Berjamaah', desc: 'Buka rangkaian acara dengan salat berjamaah di udara gunung.' },
+  { icon: UsersRound, title: 'Mentoring & Sharing', desc: 'Ngobrol soal kuliah dan iman bareng mentor. Santai, bukan digurui.' },
+  { icon: ChefHat, title: 'Cooking Time', desc: 'Masak bareng per kelompok. Ribut soal bumbu itu bagian serunya.' },
+  { icon: Tent, title: 'Outbound', desc: 'Permainan kelompok yang bikin ketahuan siapa MVP timnya.' },
+  { icon: Utensils, title: 'Mindful Eating', desc: 'Makan pelan-pelan tanpa HP. Ternyata lebih terasa.' },
+  { icon: PartyPopper, title: 'Night Festival', desc: 'Api unggun, musik, dan cerita sampai malam.' },
+  { icon: Sprout, title: 'Berkebun & Treasure Hunt', desc: 'Tutup acara sambil kotor-kotoran dan berburu petunjuk terakhir.' },
 ]
 
 export function Timeline() {
@@ -335,26 +334,39 @@ export function Timeline() {
     <ol className="timeline">
       {timeline.map(({ icon: Icon, title, desc }, i) => (
         <li key={title} className="timeline-item">
-          <div className="timeline-marker">
-            <Icon size={19} strokeWidth={1.7} />
-          </div>
+          <span className="timeline-no">{String(i + 1).padStart(2, '0')}</span>
           <div className="timeline-body">
-            <span className="timeline-no">{String(i + 1).padStart(2, '0')}</span>
             <h3>{title}</h3>
+            <p>{desc}</p>
           </div>
-          <p className="timeline-desc">{desc}</p>
+          <Icon className="timeline-icon" size={26} strokeWidth={1.4} />
         </li>
       ))}
     </ol>
   )
 }
 
-export function Gallery() {
+function GalleryRow({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
+  const track = [...items, ...items]
   return (
-    <div className="pinboard">
-      {GALERI.map((src, i) => (
-        <Polaroid key={src} src={src} alt={`Dokumentasi Muslim Adventure ${i + 1}`} i={i} />
-      ))}
+    <div className="gallery-row">
+      <div className={reverse ? 'gallery-track gallery-track-reverse' : 'gallery-track'}>
+        {track.map((src, i) => (
+          <figure className="gallery-item" key={`${src}-${i}`}>
+            <img src={src} alt="" loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function Gallery() {
+  const half = Math.ceil(GALERI.length / 2)
+  return (
+    <div className="gallery">
+      <GalleryRow items={GALERI.slice(0, half)} />
+      <GalleryRow items={GALERI.slice(half)} reverse />
     </div>
   )
 }
@@ -370,10 +382,10 @@ export function AfterMovie() {
       <div className="aftermovie-inner">
         <span className="eyebrow">After Movie</span>
         <h2>
-          Muslim Adventure<br />
-          <em>2025 Recap</em>
+          After movie<br />
+          <em>Muslim Adventure 2025</em>
         </h2>
-        <p>Lihat kembali perjalanan tiga hari peserta angkatan sebelumnya di Madani Forest.</p>
+        <p>Rekaman lengkap Muslim Adventure 2025 di Madani Forest.</p>
         <button className="button" onClick={() => setShow(true)}>
           <span className="play">▶</span> Putar After Movie
         </button>
@@ -424,38 +436,47 @@ export function Countdown() {
 export function InfoPraktis() {
   return (
     <div className="ticket">
-      <div className="info-item info-item-lead">
-        <Calendar size={20} strokeWidth={1.7} />
-        <strong>Tanggal</strong>
-        <p className="info-headline">26 – 28 September 2026</p>
-        <span className="info-note">Pra Muslim Adventure: 12 September 2026</span>
-      </div>
-      <div className="info-item info-item-map">
-        <MapPin size={20} strokeWidth={1.7} />
-        <strong>Lokasi</strong>
-        <p>Madani Forest, Jl. Bantarpanjang, Pasanggrahan, Kasomalang, Kab. Subang</p>
-        <div className="info-map">
-          <iframe
-            src="https://www.google.com/maps?q=Madani+Forest+Kasomalang+Subang&output=embed"
-            title="Peta lokasi Madani Forest"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+      <div className="info-map-card">
+        <iframe
+          src="https://www.google.com/maps?q=Madani+Forest+Kasomalang+Subang&output=embed"
+          title="Peta lokasi Madani Forest"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+        <div className="info-map-overlay">
+          <strong>
+            <MapPin size={15} strokeWidth={2} /> Madani Forest
+          </strong>
+          <p>Jl. Bantarpanjang, Pasanggrahan, Kasomalang, Kab. Subang</p>
+          <Link href={LOCATION_MAPS_URL} target="_blank" className="info-link">
+            Buka di Google Maps
+          </Link>
         </div>
-        <Link href={LOCATION_MAPS_URL} target="_blank" className="info-link">
-          Buka di Google Maps
-        </Link>
       </div>
-      <div className="info-item">
-        <Wallet size={20} strokeWidth={1.7} />
-        <strong>Sudah termasuk</strong>
-        <p>Training, tenda 3 hari 2 malam, welcome drink, merchandise, dan transportasi pulang-pergi.</p>
-      </div>
-      <div className="info-item">
-        <Backpack size={20} strokeWidth={1.7} />
-        <strong>Yang perlu dibawa</strong>
-        <p>Jaket atau baju hangat, perlengkapan salat, dan obat-obatan pribadi.</p>
-        <span className="info-note">Lokasi berada di dataran tinggi.</span>
+
+      <div className="info-rows">
+        <div className="info-row info-row-lead">
+          <Calendar size={20} strokeWidth={1.7} />
+          <div>
+            <strong>Tanggal</strong>
+            <p className="info-headline">26 – 28 September 2026</p>
+            <span className="info-note">Pra Muslim Adventure: 12 September 2026</span>
+          </div>
+        </div>
+        <div className="info-row">
+          <Wallet size={20} strokeWidth={1.7} />
+          <div>
+            <strong>Sudah termasuk</strong>
+            <p>Training, tenda 3 hari 2 malam, welcome drink, merchandise, dan transportasi pulang-pergi.</p>
+          </div>
+        </div>
+        <div className="info-row">
+          <Backpack size={20} strokeWidth={1.7} />
+          <div>
+            <strong>Yang perlu dibawa</strong>
+            <p>Jaket atau baju hangat, perlengkapan salat, dan obat-obatan pribadi. Lokasi berada di dataran tinggi.</p>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -465,7 +486,7 @@ export function WhatsAppFab() {
   return (
     <Link
       className="wa-fab"
-      href="https://wa.me/6281288421988"
+      href={WA_URL}
       target="_blank"
       aria-label="Tanya panitia via WhatsApp"
     >
@@ -511,10 +532,10 @@ export function RegisterCTA({ id = 'daftar' }: { id?: string }) {
       }}
     >
       <div>
-        <span className="eyebrow">26 - 28 SEPTEMBER 2026 · MADANI FOREST, SUBANG</span>
+        <span className="eyebrow">26–28 September 2026 · Madani Forest, Subang</span>
         <h2>
-          Kuota terbatas,<br />
-          <em>segera daftarkan dirimu.</em>
+          Kuota terbatas.<br />
+          <em>Amankan tempatmu.</em>
         </h2>
       </div>
       <div className="register-actions">
@@ -522,7 +543,7 @@ export function RegisterCTA({ id = 'daftar' }: { id?: string }) {
         <Link className="button button-invert" href={REGISTER_URL} target="_blank">
           Daftar Sekarang
         </Link>
-        <Link className="wa-link" href="https://wa.me/6281288421988" target="_blank">
+        <Link className="wa-link" href={WA_URL} target="_blank">
           <MessageCircle size={16} /> Tanya via WhatsApp
         </Link>
       </div>

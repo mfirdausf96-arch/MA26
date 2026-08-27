@@ -17,7 +17,7 @@ import {
 import { Marquee, Reveal } from '@/components/bits'
 import { MEDIA } from '@/lib/media'
 
-const tickerItems = ['MUSLIM ADVENTURE 2026', '26–28 SEPTEMBER', 'MADANI FOREST, SUBANG', 'STUDI WISATA ISLAM']
+const tickerItems = ['Muslim Adventure 2026', '26–28 September', 'Madani Forest, Subang', 'MABIM Fakultas Teknik UNJ']
 
 export default function Home() {
   return (
@@ -30,14 +30,14 @@ export default function Home() {
         }}
       >
         <div className="hero-copy">
-          <span className="eyebrow">MABIM Fakultas Teknik UNJ · 26-28 September 2026</span>
+          <span className="eyebrow">26–28 September 2026 · Madani Forest, Subang</span>
           <h1>
             Muslim<br />
             <em>Adventure 2026</em>
           </h1>
           <p>
-            Tiga hari mendekatkan diri kepada Allah dan mengenal sesama mahasiswa baru Fakultas Teknik UNJ,
-            jauh dari rutinitas kampus.
+            Tiga hari dua malam berkemah di Madani Forest, Subang. Agenda wajib mahasiswa baru
+            Fakultas Teknik UNJ, digarap FSI Al-Biruni.
           </p>
           <div className="hero-actions">
             <Link className="button" href="#daftar">
@@ -54,11 +54,8 @@ export default function Home() {
       <section className="section-pad block-paper" id="tentang">
         <Reveal>
           <div className="section-head">
-            <span className="eyebrow">Tiga hal yang kami pegang</span>
-            <h2>
-              Bukan sekadar mendaki gunung.<br />
-              <em>Ada niat di baliknya.</em>
-            </h2>
+            <span className="eyebrow">Yang kami pegang</span>
+            <h2>Cozy, mindful, meaningful</h2>
           </div>
         </Reveal>
         <Reveal delay={0.15}>
@@ -74,10 +71,10 @@ export default function Home() {
       {/* 3. Manfaat */}
       <section className="section-pad block-ink why-join" id="manfaat">
         <Reveal className="why-join-copy">
-          <span className="eyebrow">Apa manfaatnya?</span>
+          <span className="eyebrow">Kenapa ikut</span>
           <h2>
-            Manfaat yang<br />
-            <em>kamu bawa pulang.</em>
+            Yang kamu bawa pulang<br />
+            <em>selain foto.</em>
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
@@ -88,11 +85,8 @@ export default function Home() {
       {/* Fasilitas */}
       <section className="section-pad block-paper" id="fasilitas">
         <Reveal className="section-head">
-          <span className="eyebrow">Yang kamu dapatkan</span>
-          <h2>
-            Sudah termasuk<br />
-            <em>dalam satu paket.</em>
-          </h2>
+          <span className="eyebrow">Fasilitas</span>
+          <h2>Sudah termasuk biaya pendaftaran</h2>
         </Reveal>
         <Reveal delay={0.15}>
           <FacilityGrid />
@@ -101,19 +95,16 @@ export default function Home() {
 
       {/* Stats */}
       <section className="stats block-ink">
-        <Stat number="03" label="Hari lepas dari rutinitas" />
-        <Stat number="08" label="Rangkaian kegiatan" />
-        <Stat number="∞" label="Circle baru yang kebentuk" />
+        <Stat number="3" label="Hari, 2 malam" />
+        <Stat number="8" label="Agenda kegiatan" />
+        <Stat number="1" label="Angkatan, satu tenda" />
       </section>
 
       {/* 4. Rangkaian Kegiatan */}
-      <section className="section-pad block-paper timeline-section" id="kegiatan">
+      <section className="section-pad timeline-section" id="kegiatan">
         <Reveal className="section-head">
-          <span className="eyebrow">Rangkaian kegiatan</span>
-          <h2>
-            Apa saja yang dilakukan<br />
-            <em>selama tiga hari?</em>
-          </h2>
+          <span className="eyebrow">Rundown</span>
+          <h2>Kegiatan selama tiga hari</h2>
         </Reveal>
         <Reveal delay={0.1}>
           <Timeline />
@@ -126,10 +117,10 @@ export default function Home() {
       {/* 5. Galeri Foto */}
       <section className="section-pad corkboard" id="galeri">
         <Reveal className="section-head">
-          <span className="eyebrow">Dokumentasi kegiatan</span>
+          <span className="eyebrow">Dokumentasi</span>
           <h2>
-            Momen dari<br />
-            <em>angkatan sebelumnya.</em>
+            Muslim Adventure<br />
+            <em>tahun lalu.</em>
           </h2>
         </Reveal>
         <Gallery />
@@ -138,11 +129,8 @@ export default function Home() {
       {/* 7. Info Praktis */}
       <section className="section-pad block-paper" id="info">
         <Reveal className="section-head">
-          <span className="eyebrow">Informasi penting</span>
-          <h2>
-            Info yang<br />
-            <em>perlu kamu ketahui.</em>
-          </h2>
+          <span className="eyebrow">Info penting</span>
+          <h2>Tanggal, lokasi, dan bawaan</h2>
         </Reveal>
         <InfoPraktis />
       </section>
@@ -152,10 +140,7 @@ export default function Home() {
         <Reveal>
           <span className="eyebrow">FAQ</span>
           <div className="section-head">
-            <h2>
-              Pertanyaan<br />
-              <em>yang sering muncul.</em>
-            </h2>
+            <h2>Yang sering ditanyakan</h2>
           </div>
         </Reveal>
         <FAQ />

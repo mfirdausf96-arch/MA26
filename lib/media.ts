@@ -13,6 +13,12 @@ export const MEDIA = {
 
 export const SURAT_MABIM_URL = '/dokumen/surat-pemberitahuan-mabim-ft-unj.pdf'
 
+const WA_NUMBER = '6281288421988'
+const WA_TEMPLATE =
+  'Halo Kak, saya mau bertanya soal Muslim Adventure 2026 (26-28 September, Madani Forest Subang).\n\nNama: \nProdi/Angkatan: \nPertanyaan: '
+
+export const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEMPLATE)}`
+
 export const GALERI = Array.from(
   { length: 16 },
   (_, i) => `/images/galeri/doc-${String(i + 1).padStart(2, '0')}.jpg`,
