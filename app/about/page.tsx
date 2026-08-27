@@ -26,13 +26,12 @@ export default function AboutPage() {
           <Media 
             src="/images/DEKAN MA (1).mov" 
             className="about-media" 
-            label="SAMBUTAN DEKAN FT UNJ" 
             controls={true} 
           />
         </div>
         
         <div className="about-content">
-          <span className="eyebrow">OUR INTENTION</span>
+          <span className="eyebrow">Sambutan Dekan FT UNJ</span>
           <p className="big-copy">
             Surat MABIM Fakultas Teknik UNJ
           </p>
