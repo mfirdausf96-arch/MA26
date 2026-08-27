@@ -208,30 +208,29 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
 export function DekanSection() {
   return (
-    <section className="dekan-section section-pad block-paper" id="tentang-mabim">
-      <div className="dekan-media-wrapper">
-        <Media src={MEDIA.sambutanDekan} className="dekan-media" label="Sambutan Dekan FT UNJ" controls />
-      </div>
-      <div className="dekan-copy">
-        <span className="eyebrow">Apa kata Dekan Fakultas Teknik UNJ</span>
-        <blockquote className="dekan-quote">
-          Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman,
-          dengan pembinaan oleh Mentor FSI Al-Biruni.
-        </blockquote>
-        <div className="dekan-attribution">
-          <strong>Dekan Fakultas Teknik</strong>
-          <span>Universitas Negeri Jakarta</span>
+    <section className="section-pad block-paper" id="tentang-mabim">
+      <div className="dekan-card">
+        <div className="dekan-media-wrapper">
+          <Media src={MEDIA.sambutanDekan} className="dekan-media" label="Sambutan Dekan FT UNJ" controls />
         </div>
-        <div className="mabim-notice">
-          <Megaphone size={18} strokeWidth={1.7} />
-          <p>
-            Tercantum dalam surat agenda MABIM dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
-            Surat Pemberitahuan Dekan FT UNJ No. B/2472/5.FT/KM/VII/2026.
-          </p>
+        <div className="dekan-copy">
+          <span className="eyebrow">Apa kata Dekan Fakultas Teknik UNJ</span>
+          <blockquote className="dekan-quote">Muslim Adventure 2026, jalan-jalan berfaedah.</blockquote>
+          <div className="dekan-attribution">
+            <strong>Dekan Fakultas Teknik</strong>
+            <span>Universitas Negeri Jakarta</span>
+          </div>
+          <div className="mabim-notice">
+            <Megaphone size={18} strokeWidth={1.7} />
+            <p>
+              Tercantum dalam surat agenda MABIM dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
+              Surat Pemberitahuan Dekan FT UNJ No. B/2472/5.FT/KM/VII/2026.
+            </p>
+          </div>
+          <Link href={SURAT_MABIM_URL} target="_blank" className="arrow-link">
+            Baca Surat Pemberitahuan (PDF)
+          </Link>
         </div>
-        <Link href={SURAT_MABIM_URL} target="_blank" className="arrow-link">
-          Baca Surat Pemberitahuan (PDF)
-        </Link>
       </div>
     </section>
   )

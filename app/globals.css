@@ -174,58 +174,61 @@ h1, h2 { letter-spacing: -.02em; }
    ========================================== */
 .mabim-notice {
   align-items: flex-start;
-  background: rgba(63,111,214,.07);
-  border-left: 3px solid var(--accent);
+  background: rgba(232,239,105,.07);
+  border-left: 3px solid var(--lime);
   border-radius: 0 8px 8px 0;
   display: flex;
   gap: 12px;
-  margin: 20px 0 4px;
-  max-width: 52ch;
+  margin: 22px 0 4px;
   padding: 14px 18px;
   text-align: left;
 }
-.mabim-notice svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
-.mabim-notice p { color: var(--ink) !important; font-size: 13.5px; line-height: 1.55; margin: 0 !important; max-width: none !important; }
+.mabim-notice svg { color: var(--lime); flex-shrink: 0; margin-top: 2px; }
+.mabim-notice p { color: rgba(243,239,230,.7); font-size: 13.5px; line-height: 1.55; margin: 0; }
 
 /* ==========================================
    SAMBUTAN DEKAN
    ========================================== */
-.dekan-section {
+.dekan-card {
   align-items: center;
+  background: var(--ink);
+  border-radius: 24px;
+  color: var(--paper);
   display: grid;
-  gap: 52px;
-  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 48px;
+  grid-template-columns: 300px minmax(0, 1fr);
   margin: 0 auto;
-  max-width: 1060px;
+  max-width: 1000px;
+  overflow: hidden;
+  padding: 40px 48px 40px 40px;
 }
 .dekan-media-wrapper { width: 100%; }
-.dekan-media { aspect-ratio: 9 / 16; border-radius: 18px; box-shadow: var(--shadow-soft-lg); overflow: hidden; width: 100%; }
+.dekan-media { aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; width: 100%; }
 .dekan-media .media-label { display: none; }
-.dekan-copy .eyebrow { color: var(--accent); }
+.dekan-copy .eyebrow { color: var(--lime); }
 .dekan-quote {
-  color: var(--ink);
+  color: var(--paper);
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.4vw, 30px);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.38;
-  margin: 18px 0 0;
-  max-width: 26ch;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 16px 0 0;
   position: relative;
 }
 .dekan-quote::before {
-  color: var(--accent);
+  color: var(--lime);
   content: '\201C';
-  font-size: 2.4em;
-  left: -.52em;
+  font-size: 2.2em;
+  left: -.46em;
   line-height: 1;
+  opacity: .55;
   position: absolute;
-  top: -.08em;
+  top: -.06em;
 }
-.dekan-attribution { align-items: baseline; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.dekan-attribution strong { color: var(--ink); font-size: 14px; font-weight: 700; }
-.dekan-attribution span { color: var(--muted); font-size: 14px; }
-.dekan-copy .arrow-link { color: var(--accent); display: inline-flex; margin-top: 18px; text-decoration: underline; text-underline-offset: 3px; }
+.dekan-attribution { align-items: baseline; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.dekan-attribution strong { color: var(--paper); font-size: 14px; font-weight: 700; }
+.dekan-attribution span { color: rgba(243,239,230,.55); font-size: 14px; }
+.dekan-copy .arrow-link { color: var(--lime); display: inline-flex; margin-top: 18px; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ==========================================
    SECTION BLOCKS
@@ -240,6 +243,7 @@ h1, h2 { letter-spacing: -.02em; }
   line-height: 1.05;
   margin: 16px 0 0;
 }
+.section-lead { color: var(--muted); font-size: 16px; line-height: 1.65; margin: 18px 0 0; max-width: 56ch; }
 
 /* ==========================================
    PILAR / TENTANG ACARA
@@ -658,10 +662,12 @@ h1, h2 { letter-spacing: -.02em; }
   .info-rows { grid-template-rows: none; }
   .info-row { padding: 18px; }
 
-  .dekan-section { gap: 26px; grid-template-columns: 1fr; }
-  .dekan-media-wrapper { margin: 0 auto; max-width: 240px; }
-  .dekan-quote { margin-left: .55em; max-width: none; }
-  .mabim-notice { max-width: none; }
+  .dekan-card { border-radius: 20px; gap: 24px; grid-template-columns: 1fr; padding: 28px 24px; text-align: center; }
+  .dekan-media-wrapper { margin: 0 auto; max-width: 220px; }
+  .dekan-quote { margin-left: .5em; }
+  .dekan-attribution { justify-content: center; }
+  .dekan-copy .arrow-link { justify-content: center; }
+  .mabim-notice { text-align: left; }
 
   .timeline { border-radius: 14px; grid-template-columns: 1fr; }
   .timeline-item { column-gap: 14px; grid-template-columns: auto 1fr auto; padding: 18px; row-gap: 6px; }

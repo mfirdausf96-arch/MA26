@@ -56,6 +56,11 @@ export default function Home() {
           <div className="section-head">
             <span className="eyebrow">Yang kami pegang</span>
             <h2>Cozy, mindful, meaningful</h2>
+            <p className="section-lead">
+              Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman
+              dan pembinaan oleh Mentor FSI Al-Biruni. Agenda ini merupakan rangkaian kegiatan yang dicantumkan
+              dalam surat agenda MABIM Fakultas Teknik UNJ.
+            </p>
           </div>
         </Reveal>
         <Reveal delay={0.15}>
