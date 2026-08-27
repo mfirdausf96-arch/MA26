@@ -165,6 +165,13 @@ export function FAQ() {
   ]
   return (
     <div className="faq">
+      <div>
+        <span className="eyebrow">GOOD TO KNOW</span>
+        <h2>
+          Questions,<br />
+          <em>answered.</em>
+        </h2>
+      </div>
       {items.map(([q, a]) => (
         <details key={q}>
           <summary>{q}<span>+</span></summary>

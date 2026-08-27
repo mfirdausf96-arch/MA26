@@ -43,13 +43,6 @@ export default function AboutPage() {
 
       {/* Section FAQ */}
       <section className="faq-section">
-        <div>
-          <span className="eyebrow">GOOD TO KNOW</span>
-          <h2>
-            Questions,<br />
-            <em>answered.</em>
-          </h2>
-        </div>
         <FAQ />
       </section>
 
