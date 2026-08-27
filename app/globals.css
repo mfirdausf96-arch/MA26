@@ -212,7 +212,7 @@ h1, h2 { letter-spacing: -.02em; }
   font-size: clamp(28px, 3.2vw, 40px);
   font-weight: 500;
   line-height: 1.2;
-  margin: 16px 0 0;
+  margin: 16px 0 0 24px;
   position: relative;
 }
 .dekan-quote::before {
@@ -243,7 +243,7 @@ h1, h2 { letter-spacing: -.02em; }
   line-height: 1.05;
   margin: 16px 0 0;
 }
-.section-lead { color: var(--muted); font-size: 16px; line-height: 1.65; margin: 18px 0 0; max-width: 56ch; }
+.section-lead { color: var(--muted); font-size: 16px; line-height: 1.65; margin: 18px 0 0; }
 
 /* ==========================================
    PILAR / TENTANG ACARA
@@ -664,7 +664,7 @@ h1, h2 { letter-spacing: -.02em; }
 
   .dekan-card { border-radius: 20px; gap: 24px; grid-template-columns: 1fr; padding: 28px 24px; text-align: center; }
   .dekan-media-wrapper { margin: 0 auto; max-width: 220px; }
-  .dekan-quote { margin-left: .5em; }
+  .dekan-quote { display: inline-block; margin-left: 12px; }
   .dekan-attribution { justify-content: center; }
   .dekan-copy .arrow-link { justify-content: center; }
   .mabim-notice { text-align: left; }

@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Muslim Adventure 2026 | Studi Wisata Islam',
+  title: 'Muslim Adventure 2026',
   description: 'Studi Wisata Islam 2026 — perjalanan tiga hari di Madani Forest, Subang. Cozy, Mindful, Meaningful.',
   icons: {
     icon: [{ url: '/images/logo.png' }],
