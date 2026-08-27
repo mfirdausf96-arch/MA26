@@ -54,7 +54,7 @@ export default function FasilitasPage() {
         }}
       >
         <span className="eyebrow">PACK LIGHT. LIVE FULLY.</span>
-        <h2>
+        <h2 color='white'>
           Come as you are.<br />
           <em>Leave changed.</em>
         </h2>
