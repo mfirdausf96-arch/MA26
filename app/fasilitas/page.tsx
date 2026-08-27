@@ -48,12 +48,11 @@ export default function FasilitasPage() {
         className="quote"
         style={{
           // Hapus atau comment baris ini jika ingin tetap menggunakan warna dasar light
-          backgroundImage: `linear-gradient(rgba(244, 241, 232, 0.85), rgba(244, 241, 232, 0.85)), url('${MEDIA.facility}')`,
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.30), rgba(255, 255, 255, 0.30)), url('/images/cpm35 2025-09-20 113902.033.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <span className="eyebrow">PACK LIGHT. LIVE FULLY.</span>
         <h2>
           Come as you are.<br />
           <em>Leave changed.</em>
