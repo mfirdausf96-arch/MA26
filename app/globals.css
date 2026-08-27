@@ -265,7 +265,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Container untuk membuat video berukuran 80% */
 .about-media-wrapper {
-  width: 80%; /* Mengatur lebar elemen menjadi 80% */
+  width: 100%; /* Mengatur lebar elemen menjadi 80% */
   margin: 0 auto; /* Menjaga posisi di tengah kolomnya */
 }
 
