@@ -31,7 +31,7 @@ export default function AboutPage() {
         </div>
   
         <div className="about-content">
-          <span className="eyebrow">OUR INTENTION</span>
+          <span className="eyebrow">Apa Kata DEKAN FAKULTAS TEKNIK UNJ?</span>
           <p className="big-copy">
             Surat MABIM Fakultas Teknik UNJ
           </p>
