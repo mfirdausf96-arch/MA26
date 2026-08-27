@@ -53,7 +53,6 @@ export default function FasilitasPage() {
           backgroundPosition: 'center',
         }}
       >
-        <span className="eyebrow">PACK LIGHT. LIVE FULLY.</span>
         <h2>
           Come as you are.<br />
           <em>Leave changed.</em>
