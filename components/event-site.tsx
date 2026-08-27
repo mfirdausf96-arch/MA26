@@ -90,7 +90,6 @@ export function Media({
   overlay?: boolean;
 }) { 
   const mediaSrc = src || '/placeholder.jpg'
-  // Ditambahkan .mov agar video Dekan terdeteksi sebagai elemen <video>
   const isVideo = mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov')
 
   return (
@@ -100,9 +99,9 @@ export function Media({
           src={mediaSrc} 
           autoPlay={!controls}
           controls={controls}
-          muted={!controls} /* Autoplay wajib muted */
+          muted={!controls}
           playsInline 
-          style={{ width: '70%', height: '70%', objectFit: 'cover' }} 
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
         />
       ) : (
         <div 
