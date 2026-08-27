@@ -36,8 +36,8 @@ export default function Home() {
             <em>2026</em>
           </h1>
           <p>
-            Tiga hari dua malam berkemah di Madani Forest, Subang. Agenda wajib mahasiswa baru
-            Fakultas Teknik UNJ, digarap FSI Al-Biruni.
+            Muslim Adventure adalah titik temu antara iman dan alam bebas. Sebuah perjalanan tiga hari 
+            untuk kembali terhubung, memulihkan energi, dan bertumbuh bersama.
           </p>
           <div className="hero-actions">
             <Link className="button" href="#daftar">
