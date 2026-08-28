@@ -503,8 +503,8 @@ h1, h2 { letter-spacing: -.02em; }
   position: absolute;
   right: 0;
 }
-.wa-fab-menu-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 4px; }
-.wa-fab-menu a { border-radius: 8px; color: var(--ink); font-size: 14px; font-weight: 600; padding: 10px; transition: background .15s ease; }
+.wa-fab-menu a { align-items: center; border-radius: 8px; color: var(--ink); display: flex; font-size: 14px; font-weight: 600; gap: 8px; padding: 10px; transition: background .15s ease; }
+.wa-fab-menu a svg { color: #1f9d55; flex-shrink: 0; }
 .wa-fab-menu a:hover { background: rgba(31,157,85,.1); }
 
 /* ==========================================
@@ -683,27 +683,27 @@ h1, h2 { letter-spacing: -.02em; }
 /* ==========================================
    SURAT VIEWER
    ========================================== */
+.surat-viewer-wrap { margin: 44px auto 0; max-width: 720px; }
 .surat-viewer {
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: var(--shadow-soft);
-  margin: 44px auto 0;
-  max-width: 720px;
   overflow: hidden;
 }
-.surat-viewer-bar {
+.surat-viewer-caption {
   align-items: center;
-  background: var(--cork);
-  border-bottom: 1px solid var(--border);
+  color: var(--muted);
   display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  padding: 12px 18px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  gap: 6px;
+  justify-content: center;
+  margin: 12px 0 0;
+  text-align: center;
 }
-.surat-viewer-bar span { align-items: center; color: var(--ink); display: flex; font-size: 12.5px; font-weight: 600; gap: 7px; }
-.surat-viewer-bar span svg { color: var(--accent); flex-shrink: 0; }
-.surat-viewer-bar a { color: var(--accent); flex-shrink: 0; font-size: 12.5px; font-weight: 700; }
+.surat-viewer-caption svg { color: var(--accent); flex-shrink: 0; }
+.surat-viewer-caption a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 .surat-viewer-frame { border: 0; display: block; height: 640px; width: 100%; }
 @media (max-width: 700px) {
   /* backdrop-filter would make .nav's fixed position resolve against the
@@ -787,8 +787,8 @@ h1, h2 { letter-spacing: -.02em; }
   .dekan-attribution { justify-content: center; }
   .dekan-copy .arrow-link { justify-content: center; }
   .mabim-notice { text-align: left; }
-  .surat-viewer { border-radius: 16px; margin-top: 32px; }
-  .surat-viewer-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .surat-viewer-wrap { margin-top: 32px; }
+  .surat-viewer { border-radius: 14px; }
   .surat-viewer-frame { height: 420px; }
 
   .timeline { border-radius: 14px; grid-template-columns: 1fr; }

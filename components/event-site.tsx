@@ -326,19 +326,19 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
 export function SuratViewer() {
   return (
-    <div className="surat-viewer">
-      <div className="surat-viewer-bar">
-        <span>
-          <FileText size={15} strokeWidth={1.8} /> Surat Pemberitahuan Dekan FT UNJ &middot; No. B/2472/5.FT/KM/VII/2026
-        </span>
-        <Link href={SURAT_MABIM_URL} target="_blank">
-          Buka penuh
-        </Link>
+    <div className="surat-viewer-wrap">
+      <div className="surat-viewer">
+        <iframe src={SURAT_MABIM_URL} title="Surat Pemberitahuan Dekan FT UNJ" className="surat-viewer-frame" />
+        <noscript>
+          <Image src={SURAT_MABIM_THUMBNAIL} alt="Surat Pemberitahuan Dekan FT UNJ" width={600} height={849} />
+        </noscript>
       </div>
-      <iframe src={`${SURAT_MABIM_URL}#toolbar=0`} title="Surat Pemberitahuan Dekan FT UNJ" className="surat-viewer-frame" />
-      <noscript>
-        <Image src={SURAT_MABIM_THUMBNAIL} alt="Surat Pemberitahuan Dekan FT UNJ" width={600} height={849} />
-      </noscript>
+      <p className="surat-viewer-caption">
+        <FileText size={14} strokeWidth={1.8} /> Surat Pemberitahuan Dekan FT UNJ, No. B/2472/5.FT/KM/VII/2026 &middot;{' '}
+        <Link href={SURAT_MABIM_URL} target="_blank">
+          buka di tab baru
+        </Link>
+      </p>
     </div>
   )
 }
@@ -659,12 +659,11 @@ function WaMenu({ onClose }: { onClose: () => void }) {
     <>
       <div className="wa-fab-backdrop" onClick={onClose} />
       <div className="wa-fab-menu">
-        <span className="wa-fab-menu-title">Antum ikhwan atau akhwat?</span>
         <Link href={NARAHUBUNG.ikhwan.url} target="_blank" onClick={onClose}>
-          Ikhwan &middot; {NARAHUBUNG.ikhwan.name}
+          <MessageCircle size={15} strokeWidth={2} /> {NARAHUBUNG.ikhwan.name}
         </Link>
         <Link href={NARAHUBUNG.akhwat.url} target="_blank" onClick={onClose}>
-          Akhwat &middot; {NARAHUBUNG.akhwat.name}
+          <MessageCircle size={15} strokeWidth={2} /> {NARAHUBUNG.akhwat.name}
         </Link>
       </div>
     </>
