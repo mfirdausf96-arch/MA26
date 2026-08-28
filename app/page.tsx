@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {
   AfterMovie,
+  AgendaHighlight,
   BenefitList,
   DekanSection,
   FacilityGrid,
@@ -15,9 +16,9 @@ import {
   Timeline,
 } from '@/components/event-site'
 import { Marquee, Reveal } from '@/components/bits'
-import { MEDIA } from '@/lib/media'
+import { MEDIA, REGISTER_URL } from '@/lib/media'
 
-const tickerItems = ['Muslim Adventure 2026', '26–28 September', 'Madani Forest, Subang', 'Masa Bimbingan Fakultas Teknik UNJ']
+const tickerItems = ['Muslim Adventure 2026', '25–27 September', 'Madani Forest, Subang', 'Masa Bimbingan Fakultas Teknik UNJ']
 
 export default function Home() {
   return (
@@ -30,7 +31,7 @@ export default function Home() {
         }}
       >
         <div className="hero-copy">
-          <span className="eyebrow">26–28 September 2026 · Madani Forest, Subang</span>
+          <span className="eyebrow">25–27 September 2026 · Madani Forest, Subang</span>
           <h1>
             Muslim <em>Adventure</em><br />
             <em>2026</em>
@@ -40,7 +41,7 @@ export default function Home() {
             untuk kembali terhubung, memulihkan energi, dan bertumbuh bersama.
           </p>
           <div className="hero-actions">
-            <Link className="button" href="#daftar">
+            <Link className="button" href={REGISTER_URL} target="_blank">
               Daftar Sekarang
             </Link>
             <RecapButton />
@@ -139,6 +140,7 @@ export default function Home() {
           <div className="section-head">
             <h2>Yang sering ditanyakan</h2>
           </div>
+          <AgendaHighlight />
         </Reveal>
         <FAQ />
       </section>

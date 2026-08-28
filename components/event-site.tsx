@@ -36,6 +36,7 @@ import {
   CalendarDays,
   Building2,
   Download,
+  CalendarPlus,
 } from 'lucide-react'
 import { PdfViewer } from './pdf-viewer'
 
@@ -583,7 +584,7 @@ export function AfterMovie() {
           After movie<br />
           <em>Muslim Adventure 2025</em>
         </h2>
-        {!show && <p>Rekaman lengkap Muslim Adventure 2025 di Madani Forest.</p>}
+        {!show && <p>Rekaman lengkap perjalanan Muslim Adventure 2025.</p>}
         {!show ? (
           <button className="button" onClick={() => setShow(true)}>
             <span className="play">▶</span> Putar After Movie
@@ -683,7 +684,7 @@ export function InfoPraktis() {
           <Calendar size={20} strokeWidth={1.7} />
           <div>
             <strong>Tanggal</strong>
-            <p className="info-headline">26 – 28 September 2026</p>
+            <p className="info-headline">25 – 27 September 2026</p>
             <span className="info-note">Pra Muslim Adventure: 12 September 2026</span>
           </div>
         </div>
@@ -749,13 +750,96 @@ export function WaAskButton({ className, children }: { className?: string; child
   )
 }
 
+function buildIcs({
+  uid,
+  title,
+  description,
+  location,
+  start,
+  end,
+}: {
+  uid: string
+  title: string
+  description: string
+  location: string
+  start: string
+  end: string
+}) {
+  const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Muslim Adventure 2026//ID',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${stamp}`,
+    `DTSTART;VALUE=DATE:${start}`,
+    `DTEND;VALUE=DATE:${end}`,
+    `SUMMARY:${title}`,
+    `LOCATION:${location}`,
+    `DESCRIPTION:${description}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n')
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`
+}
+
+const agendaItems = [
+  {
+    label: 'Pra Muslim Adventure',
+    date: '12 September 2026',
+    file: 'pra-muslim-adventure-2026.ics',
+    ics: buildIcs({
+      uid: 'pra-ma2026@muslimadventure.id',
+      title: 'Pra Muslim Adventure 2026',
+      description: 'Rangkaian pra-acara Muslim Adventure 2026, FSI Al-Biruni Fakultas Teknik UNJ.',
+      location: 'Madani Forest, Subang',
+      start: '20260912',
+      end: '20260913',
+    }),
+  },
+  {
+    label: 'Muslim Adventure',
+    date: '25 - 27 September 2026',
+    file: 'muslim-adventure-2026.ics',
+    ics: buildIcs({
+      uid: 'pas-ma2026@muslimadventure.id',
+      title: 'Muslim Adventure 2026',
+      description: 'Muslim Adventure 2026 di Madani Forest, Subang. Bagian dari MABIM Fakultas Teknik UNJ.',
+      location: 'Madani Forest, Subang',
+      start: '20260925',
+      end: '20260928',
+    }),
+  },
+]
+
+export function AgendaHighlight() {
+  return (
+    <div className="agenda-highlight">
+      <span className="agenda-highlight-title">
+        <CalendarDays size={16} strokeWidth={1.8} /> Jadwal Muslim Adventure 2026
+      </span>
+      {agendaItems.map((item) => (
+        <div className="agenda-item" key={item.label}>
+          <div>
+            <strong>{item.label}</strong>
+            <span>{item.date}</span>
+          </div>
+          <a href={item.ics} download={item.file} className="agenda-add">
+            <CalendarPlus size={15} strokeWidth={2} /> Kalender
+          </a>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function FAQ() {
   const items = [
     ['Kegiatan ini untuk siapa saja?', 'Untuk mahasiswa baru Fakultas Teknik yang ingin mencari ketenangan, membangun pertemanan baru, dan siap beraktivitas di alam terbuka.'],
     ['Apa saja yang perlu dibawa?', 'Pakaian yang nyaman untuk kegiatan luar ruangan, jaket atau baju hangat, perlengkapan salat, dan obat-obatan pribadi.'],
     ['Biaya pendaftaran sudah termasuk apa saja?', 'Training, menginap 3 hari 2 malam, welcome drink, dan merchandise.'],
     ['Bagaimana dengan transportasi?', 'Transportasi disediakan oleh panitia dari keberangkatan hingga kepulangan. Titik keberangkatan akan diinformasikan lebih lanjut.'],
-    ['Kapan rangkaian acara berlangsung?', 'Pra Muslim Adventure dilaksanakan pada 12 September 2026, dan Muslim Adventure utama pada 26-28 September 2026. Rundown lengkap akan diinformasikan menyusul.'],
     ['Apakah tersedia sinyal di Madani Forest?', 'Jaringan sinyal di lokasi cukup memadai. Meski begitu, kami menyarankan peserta untuk tetap fokus mengikuti rangkaian acara.'],
     ['Bagaimana jika peserta sakit selama kegiatan?', 'Panitia telah bekerja sama dengan KSR UNJ untuk penanganan medis, dan tersedia fasilitas UKS di lokasi kegiatan.'],
     ['Bagaimana kalau belum punya teman?', 'Tidak masalah. Banyak peserta yang datang sendiri dan pulang dengan pertemanan baru.'],
@@ -785,7 +869,7 @@ export function RegisterCTA({ id = 'daftar' }: { id?: string }) {
       }}
     >
       <div>
-        <span className="eyebrow">26–28 September 2026 · Madani Forest, Subang</span>
+        <span className="eyebrow">25–27 September 2026 · Madani Forest, Subang</span>
         <h2>
           Kuota terbatas.<br />
           <em>Amankan tempatmu.</em>

@@ -1,5 +1,6 @@
-export const REGISTER_URL = 'https://bit.ly/RegistrasiPesertaMA2026'
-export const EVENT_START = '2026-09-26T00:00:00+07:00'
+export const REGISTER_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdl3AsIVGC-zy-kRvPOjtkZN1Vzihwc8uaDEeADJgbQp6AUSw/viewform'
+export const EVENT_START = '2026-09-25T00:00:00+07:00'
 export const LOCATION_MAPS_URL = 'https://maps.app.goo.gl/WQdtD2sac8gZDRta9'
 
 export const MEDIA = {
