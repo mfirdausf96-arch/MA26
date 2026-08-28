@@ -144,6 +144,10 @@ h1, h2 { letter-spacing: -.02em; }
 .button span { color: var(--paper) !important; }
 .recap-button { background: transparent; border-color: var(--border-light); color: var(--paper); cursor: pointer; }
 .recap-button:hover { background: rgba(243,239,230,.1); }
+
+.hero-recap-player { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; width: 100%; }
+.hero-recap-video { border-radius: 14px; box-shadow: var(--shadow-soft-lg); max-height: 46vh; width: 100%; }
+.hero-recap-close { align-self: flex-start; }
 .play { color: var(--lime); font-size: 12px; }
 
 .media { background-position: center; background-size: cover; border-radius: 16px; min-height: 280px; position: relative; }
@@ -709,6 +713,8 @@ h1, h2 { letter-spacing: -.02em; }
     padding: 15px 10px;
     white-space: nowrap;
   }
+  .hero-actions .hero-recap-player { grid-column: 1 / -1; }
+  .hero-recap-video { max-height: 34vh; }
 
   .section-pad { padding: 56px 20px; }
   .section-head h2 { font-size: clamp(28px, 8vw, 38px); }

@@ -248,10 +248,36 @@ export function Media({
 }
 
 export function RecapButton() {
+  const [show, setShow] = useState(false)
+  const { duck, unduck, playExclusive } = useSiteAudio()
+
+  if (show) {
+    return (
+      <div className="hero-recap-player">
+        <video
+          src={MEDIA.recapVideo}
+          controls
+          autoPlay
+          playsInline
+          className="hero-recap-video"
+          onPlay={(e) => {
+            playExclusive(e.currentTarget)
+            duck()
+          }}
+          onPause={unduck}
+          onEnded={unduck}
+        />
+        <button className="recap-button hero-recap-close" onClick={() => setShow(false)}>
+          Tutup video
+        </button>
+      </div>
+    )
+  }
+
   return (
-    <a href="#aftermovie" className="recap-button">
+    <button className="recap-button" onClick={() => setShow(true)}>
       <span className="play">▶</span> Tonton Recap
-    </a>
+    </button>
   )
 }
 
