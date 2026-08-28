@@ -9,7 +9,7 @@ export const MEDIA = {
   sambutanDekan: '/images/sambutan-dekan.mp4',
   recapVideo: '/images/recap-video.mp4',
   logo: '/images/logo.png',
-  backsound: '/audio/backsound.m4a',
+  backsound: '/audio/backsound.mp3',
 }
 
 export const SURAT_MABIM_URL = '/dokumen/surat-pemberitahuan-mabim-ft-unj.pdf'

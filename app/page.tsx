@@ -103,7 +103,7 @@ export default function Home() {
       <section className="stats">
         <Stat number="3" label="Hari, 2 malam" />
         <Stat number="8" label="Agenda kegiatan" />
-        <Stat number="1" label="Angkatan, satu tenda" />
+        <Stat number="1" label="Kelompok, 1 tenda" />
       </section>
 
       {/* 4. Rangkaian Kegiatan */}
