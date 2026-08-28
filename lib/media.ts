@@ -9,9 +9,7 @@ export const MEDIA = {
   sambutanDekan: '/images/sambutan-dekan.mp4',
   recapVideo: '/images/recap-video.mp4',
   logo: '/images/logo.png',
-  // Drop the file at public/audio/backsound.mp3 to enable the entry
-  // popup + background music. Until then this 404s silently.
-  backsound: '/audio/backsound.mp3',
+  backsound: '/audio/backsound.m4a',
 }
 
 export const SURAT_MABIM_URL = '/dokumen/surat-pemberitahuan-mabim-ft-unj.pdf'
