@@ -6,7 +6,6 @@ import {
   FacilityGrid,
   FAQ,
   Gallery,
-  InfoPraktis,
   PilarGrid,
   RecapButton,
   RegisterCTA,
@@ -17,7 +16,7 @@ import {
 import { Marquee, Reveal } from '@/components/bits'
 import { MEDIA } from '@/lib/media'
 
-const tickerItems = ['Muslim Adventure 2026', '26–28 September', 'Madani Forest, Subang', 'MABIM Fakultas Teknik UNJ']
+const tickerItems = ['Muslim Adventure 2026', '26–28 September', 'Madani Forest, Subang', 'Masa Bimbingan Fakultas Teknik UNJ']
 
 export default function Home() {
   return (
@@ -54,12 +53,11 @@ export default function Home() {
       <section className="section-pad block-paper" id="tentang">
         <Reveal>
           <div className="section-head">
-            <span className="eyebrow">Yang kami pegang</span>
             <h2>Cozy, mindful, meaningful</h2>
             <p className="section-lead">
               Agenda Muslim Adventure 2026 merupakan agenda peningkatan kualitas diri dan spiritual bersama teman
               dan pembinaan oleh Mentor FSI Al-Biruni. Agenda ini merupakan rangkaian kegiatan yang dicantumkan
-              dalam surat agenda MABIM Fakultas Teknik UNJ.
+              dalam surat agenda Masa Bimbingan (MABIM) Fakultas Teknik UNJ.
             </p>
           </div>
         </Reveal>
@@ -131,17 +129,8 @@ export default function Home() {
         <Gallery />
       </section>
 
-      {/* 7. Info Praktis */}
-      <section className="section-pad info-section" id="info">
-        <Reveal className="section-head">
-          <span className="eyebrow">Info penting</span>
-          <h2>Tanggal, lokasi, dan bawaan</h2>
-        </Reveal>
-        <InfoPraktis />
-      </section>
-
       {/* FAQ */}
-      <section className="section-pad faq-section">
+      <section className="section-pad faq-section" id="faq">
         <Reveal>
           <span className="eyebrow">FAQ</span>
           <div className="section-head">

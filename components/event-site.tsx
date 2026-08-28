@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import {
   Heart,
   Sparkles,
@@ -53,13 +53,56 @@ function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
 import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, REGISTER_URL, SURAT_MABIM_URL, WA_URL } from '@/lib/media'
 import { Polaroid } from './bits'
 
+const AudioCtx = createContext<{ duck: () => void; unduck: () => void }>({ duck: () => {}, unduck: () => {} })
+
+export function useSiteAudio() {
+  return useContext(AudioCtx)
+}
+
+export function SiteAudioProvider({ children }: { children: React.ReactNode }) {
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const [entered, setEntered] = useState(false)
+  const duckCount = useRef(0)
+
+  const duck = useCallback(() => {
+    duckCount.current += 1
+    audioRef.current?.pause()
+  }, [])
+
+  const unduck = useCallback(() => {
+    duckCount.current = Math.max(0, duckCount.current - 1)
+    if (duckCount.current === 0 && entered) {
+      audioRef.current?.play().catch(() => {})
+    }
+  }, [entered])
+
+  function handleEnter() {
+    setEntered(true)
+    audioRef.current?.play().catch(() => {})
+  }
+
+  return (
+    <AudioCtx.Provider value={{ duck, unduck }}>
+      <audio ref={audioRef} src={MEDIA.backsound} loop preload="none" />
+      {children}
+      {!entered && (
+        <div className="entry-overlay">
+          <button className="entry-button" onClick={handleEnter}>
+            Mulai Petualanganmu sekarang!
+          </button>
+        </div>
+      )}
+    </AudioCtx.Provider>
+  )
+}
+
 const nav = [
   ['Tentang', '#tentang'],
   ['Manfaat', '#manfaat'],
   ['Fasilitas', '#fasilitas'],
   ['Kegiatan', '#kegiatan'],
   ['Galeri', '#galeri'],
-  ['Info', '#info'],
+  ['FAQ', '#faq'],
 ]
 
 export function Header() {
@@ -111,8 +154,14 @@ export function Footer() {
             <Link href="https://instagram.com/temanbertumbuh" target="_blank">
               <InstagramIcon size={16} strokeWidth={1.8} /> @temanbertumbuh
             </Link>
-            <Link href={WA_URL} target="_blank">
-              <MessageCircle size={16} strokeWidth={1.8} /> WhatsApp Panitia
+          </div>
+          <div className="footer-col">
+            <strong>Narahubung</strong>
+            <Link href="https://wa.me/6289629911449" target="_blank">
+              <MessageCircle size={16} strokeWidth={1.8} /> Farhan Alhusein (L)
+            </Link>
+            <Link href="https://wa.me/6281906084132" target="_blank">
+              <MessageCircle size={16} strokeWidth={1.8} /> Bunga Amalya Hasanah (P)
             </Link>
           </div>
         </div>
@@ -142,6 +191,7 @@ export function Media({
 }) {
   const mediaSrc = src || '/placeholder.jpg'
   const isVideo = mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov')
+  const { duck, unduck } = useSiteAudio()
 
   return (
     <div className={`media ${className}`} style={{ position: 'relative', overflow: 'hidden' }}>
@@ -153,6 +203,9 @@ export function Media({
           muted={!controls}
           loop={!controls}
           playsInline
+          onPlay={controls ? duck : undefined}
+          onPause={controls ? unduck : undefined}
+          onEnded={controls ? unduck : undefined}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       ) : (
@@ -217,12 +270,12 @@ export function RecapButton() {
 
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <SiteAudioProvider>
       <Header />
       <main>{children}</main>
       <Footer />
       <WhatsAppFab />
-    </>
+    </SiteAudioProvider>
   )
 }
 
@@ -243,7 +296,7 @@ export function DekanSection() {
           <div className="mabim-notice">
             <Megaphone size={18} strokeWidth={1.7} />
             <p>
-              Tercantum dalam surat agenda MABIM dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
+              Tercantum dalam surat agenda Masa Bimbingan (MABIM) dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
               Surat Pemberitahuan Dekan FT UNJ No. B/2472/5.FT/KM/VII/2026.
             </p>
           </div>
@@ -299,7 +352,7 @@ export function PilarGrid() {
 }
 
 const benefits = [
-  { icon: Sunrise, text: 'Bangun pagi di dataran tinggi, bukan di kamar kos' },
+  { icon: Sunrise, text: 'Bangun pagi ditemani udara sejuk, bukan alarm HP' },
   { icon: UsersRound, text: 'Mentoring bareng kakak FSI Al-Biruni, bukan seminar satu arah' },
   { icon: Tent, text: 'Kenal satu angkatan sebelum semester benar-benar mulai' },
   { icon: Sparkles, text: 'Waktu untuk berpikir ulang soal arah kuliah dan ibadah' },
@@ -320,9 +373,9 @@ export function BenefitList() {
 
 const facilities = [
   { icon: GraduationCap, title: 'Training & mentoring', desc: 'Dipandu mentor FSI Al-Biruni.' },
-  { icon: Tent, title: 'Tenda 3 hari 2 malam', desc: 'Sudah disiapkan panitia di lokasi.' },
+  { icon: Tent, title: 'Menginap 3 hari 2 malam', desc: '1 kelompok, 1 tempat tidur.' },
   { icon: Gift, title: 'Welcome drink & merchandise', desc: 'Dibagikan di hari pertama.' },
-  { icon: Bus, title: 'Transportasi pulang-pergi', desc: 'Bis pariwisata. Titik kumpul menyusul.' },
+  { icon: Bus, title: 'Transportasi pulang-pergi', desc: 'Transportasi aman, kamu tinggal duduk manis aja.' },
   { icon: HeartPulse, title: 'Tim kesehatan', desc: 'KSR UNJ standby, ada UKS di lokasi.' },
   { icon: Signal, title: 'Sinyal aman', desc: 'Masih bisa kabari orang rumah.' },
 ]
@@ -343,14 +396,14 @@ export function FacilityGrid() {
 }
 
 const timeline = [
-  { icon: Flag, title: 'Tracking & Keberangkatan', desc: 'Berangkat bareng satu rombongan naik bis dari titik kumpul.' },
-  { icon: Sunrise, title: 'Salat Berjamaah', desc: 'Buka rangkaian acara dengan salat berjamaah di udara gunung.' },
-  { icon: UsersRound, title: 'Mentoring & Sharing', desc: 'Ngobrol soal kuliah dan iman bareng mentor. Santai, bukan digurui.' },
+  { icon: Flag, title: 'Tracking & Keberangkatan', desc: 'Berangkat bareng satu rombongan dari titik kumpul.' },
+  { icon: Sunrise, title: 'Salat Berjamaah', desc: 'Buka rangkaian acara dengan salat berjamaah bersama.' },
+  { icon: UsersRound, title: 'Mentoring & Sharing', desc: 'Ngobrol soal kuliah dan iman bareng mentor. Santai aja.' },
   { icon: ChefHat, title: 'Cooking Time', desc: 'Masak bareng per kelompok. Ribut soal bumbu itu bagian serunya.' },
   { icon: Tent, title: 'Outbound', desc: 'Permainan kelompok yang bikin ketahuan siapa MVP timnya.' },
   { icon: Utensils, title: 'Mindful Eating', desc: 'Makan pelan-pelan tanpa HP. Ternyata lebih terasa.' },
   { icon: PartyPopper, title: 'Night Festival', desc: 'Api unggun, musik, dan cerita sampai malam.' },
-  { icon: Sprout, title: 'Berkebun & Treasure Hunt', desc: 'Tutup acara sambil kotor-kotoran dan berburu petunjuk terakhir.' },
+  { icon: Sprout, title: '#MentoringSampaiTerang', desc: 'Sesi mentoring lanjutan, ngobrol sampai menjelang subuh.' },
 ]
 
 export function Timeline() {
@@ -397,6 +450,7 @@ export function Gallery() {
 
 export function AfterMovie() {
   const [show, setShow] = useState(false)
+  const { duck, unduck } = useSiteAudio()
   return (
     <section
       className="aftermovie"
@@ -409,12 +463,29 @@ export function AfterMovie() {
           After movie<br />
           <em>Muslim Adventure 2025</em>
         </h2>
-        <p>Rekaman lengkap Muslim Adventure 2025 di Madani Forest.</p>
-        <button className="button" onClick={() => setShow(true)}>
-          <span className="play">▶</span> Putar After Movie
-        </button>
+        {!show && <p>Rekaman lengkap Muslim Adventure 2025 di Madani Forest.</p>}
+        {!show ? (
+          <button className="button" onClick={() => setShow(true)}>
+            <span className="play">▶</span> Putar After Movie
+          </button>
+        ) : (
+          <div className="aftermovie-player">
+            <video
+              src={MEDIA.recapVideo}
+              controls
+              autoPlay
+              playsInline
+              className="aftermovie-video"
+              onPlay={duck}
+              onPause={unduck}
+              onEnded={unduck}
+            />
+            <button className="recap-button aftermovie-hide" onClick={() => setShow(false)}>
+              Sembunyikan video
+            </button>
+          </div>
+        )}
       </div>
-      {show && <VideoModal onClose={() => setShow(false)} />}
     </section>
   )
 }
@@ -498,7 +569,7 @@ export function InfoPraktis() {
           <Backpack size={20} strokeWidth={1.7} />
           <div>
             <strong>Yang perlu dibawa</strong>
-            <p>Jaket atau baju hangat, perlengkapan salat, dan obat-obatan pribadi. Lokasi berada di dataran tinggi.</p>
+            <p>Jaket atau baju hangat, perlengkapan salat, dan obat-obatan pribadi.</p>
           </div>
         </div>
       </div>
@@ -523,13 +594,13 @@ export function WhatsAppFab() {
 export function FAQ() {
   const items = [
     ['Kegiatan ini untuk siapa saja?', 'Untuk mahasiswa baru Fakultas Teknik yang ingin mencari ketenangan, membangun pertemanan baru, dan siap beraktivitas di alam terbuka.'],
-    ['Apa saja yang perlu dibawa?', 'Pakaian yang nyaman untuk kegiatan luar ruangan, jaket atau baju hangat (lokasi berada di dataran tinggi), perlengkapan salat, dan obat-obatan pribadi.'],
-    ['Biaya pendaftaran sudah termasuk apa saja?', 'Training, tenda untuk 3 hari 2 malam, welcome drink, dan merchandise.'],
-    ['Bagaimana dengan transportasi?', 'Transportasi disediakan oleh panitia menggunakan bis pariwisata, dari keberangkatan hingga kepulangan. Titik keberangkatan akan diinformasikan lebih lanjut.'],
+    ['Apa saja yang perlu dibawa?', 'Pakaian yang nyaman untuk kegiatan luar ruangan, jaket atau baju hangat, perlengkapan salat, dan obat-obatan pribadi.'],
+    ['Biaya pendaftaran sudah termasuk apa saja?', 'Training, menginap 3 hari 2 malam, welcome drink, dan merchandise.'],
+    ['Bagaimana dengan transportasi?', 'Transportasi disediakan oleh panitia dari keberangkatan hingga kepulangan. Titik keberangkatan akan diinformasikan lebih lanjut.'],
     ['Kapan rangkaian acara berlangsung?', 'Pra Muslim Adventure dilaksanakan pada 12 September 2026, dan Muslim Adventure utama pada 26-28 September 2026. Rundown lengkap akan diinformasikan menyusul.'],
     ['Apakah tersedia sinyal di Madani Forest?', 'Jaringan sinyal di lokasi cukup memadai. Meski begitu, kami menyarankan peserta untuk tetap fokus mengikuti rangkaian acara.'],
     ['Bagaimana jika peserta sakit selama kegiatan?', 'Panitia telah bekerja sama dengan KSR UNJ untuk penanganan medis, dan tersedia fasilitas UKS di lokasi kegiatan.'],
-    ['Bagaimana jika berangkat sendiri, tanpa kenalan?', 'Tidak masalah. Banyak peserta yang datang sendiri dan pulang dengan pertemanan baru.'],
+    ['Bagaimana kalau belum punya teman?', 'Tidak masalah. Banyak peserta yang datang sendiri dan pulang dengan pertemanan baru.'],
   ]
   return (
     <div className="faq">
@@ -561,6 +632,7 @@ export function RegisterCTA({ id = 'daftar' }: { id?: string }) {
           Kuota terbatas.<br />
           <em>Amankan tempatmu.</em>
         </h2>
+        <p className="register-note">Diskon spesial untuk yang daftar bersama temannya.</p>
       </div>
       <div className="register-actions">
         <Countdown />
