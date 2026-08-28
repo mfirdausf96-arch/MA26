@@ -600,25 +600,6 @@ h1, h2 { letter-spacing: -.02em; }
 }
 .entry-button:hover { background: #3563c4; transform: scale(1.03); }
 
-.modal { align-items: center; background: rgba(7,22,32,.95); display: flex; inset: 0; justify-content: center; padding: 10vh 6vw; position: fixed; z-index: 100; }
-.modal-media { height: 100%; max-height: 76vh; width: 100%; }
-.modal-close {
-  background: var(--paper);
-  border: none;
-  border-radius: 8px;
-  color: var(--ink);
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px 18px;
-  position: fixed;
-  right: 24px;
-  top: 20px;
-  z-index: 1001;
-}
-.modal-close:hover { background: #fff; }
-
 /* ==========================================
    RESPONSIVE
    ========================================== */

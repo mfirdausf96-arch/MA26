@@ -223,48 +223,11 @@ export function Media({
   )
 }
 
-export function VideoModal({ onClose }: { onClose: () => void }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
-  }, [onClose])
-
-  return (
-    <div
-      className="modal"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Recap Muslim Adventure"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose()
-      }}
-    >
-      <button className="modal-close" onClick={onClose} autoFocus>
-        Tutup ×
-      </button>
-      <Media src={MEDIA.recapVideo} className="modal-media" controls overlay={false} />
-    </div>
-  )
-}
-
 export function RecapButton() {
-  const [show, setShow] = useState(false)
-
   return (
-    <>
-      <button className="recap-button" onClick={() => setShow(true)}>
-        <span className="play">▶</span> Tonton Recap
-      </button>
-
-      {show && <VideoModal onClose={() => setShow(false)} />}
-    </>
+    <Link href="#aftermovie" className="recap-button">
+      <span className="play">▶</span> Tonton Recap
+    </Link>
   )
 }
 
