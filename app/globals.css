@@ -826,6 +826,7 @@ h1, h2 { letter-spacing: -.02em; }
   }
   .hero-copy { width: 100%; }
   .hero-copy .eyebrow { font-size: 10px; letter-spacing: .02em; padding: 6px 12px; margin-bottom: 12px; }
+  .register .eyebrow { font-size: 10px; letter-spacing: .02em; padding: 6px 12px; }
   .hero h1 { font-size: clamp(38px, 11vw, 52px); line-height: 1.02; margin-bottom: 16px; }
   .hero-copy p { font-size: 15.5px; line-height: 1.5; max-width: 34ch; opacity: .82; }
   .hero-actions { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 26px; }
