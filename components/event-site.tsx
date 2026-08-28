@@ -31,7 +31,13 @@ import {
   AlarmClock,
   Users,
   FileText,
+  FileCheck,
+  Hash,
+  CalendarDays,
+  Building2,
+  Download,
 } from 'lucide-react'
+import { PdfViewer } from './pdf-viewer'
 
 function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
   return (
@@ -60,7 +66,6 @@ import {
   MEDIA,
   NARAHUBUNG,
   REGISTER_URL,
-  SURAT_MABIM_THUMBNAIL,
   SURAT_MABIM_URL,
 } from '@/lib/media'
 import { Polaroid } from './bits'
@@ -324,28 +329,54 @@ export function Shell({ children }: { children: React.ReactNode }) {
   )
 }
 
+const agendaDetail = [
+  { icon: Calendar, label: 'Agenda', value: 'Masa Bimbingan (MABIM)' },
+  { icon: Users, label: 'Peserta', value: 'Seluruh mahasiswa baru Fakultas Teknik UNJ 2026' },
+  { icon: FileCheck, label: 'Sifat', value: 'Wajib' },
+  { icon: Hash, label: 'Referensi', value: 'Surat Pemberitahuan No. B/2472/5.FT/KM/VII/2026' },
+  { icon: CalendarDays, label: 'Tanggal surat', value: '20 Juli 2026' },
+  { icon: Building2, label: 'Dikeluarkan oleh', value: 'Dekan Fakultas Teknik UNJ' },
+]
+
 export function SuratViewer() {
   return (
-    <div className="surat-viewer-wrap">
-      <div className="surat-viewer">
-        <iframe src={SURAT_MABIM_URL} title="Surat Pemberitahuan Dekan FT UNJ" className="surat-viewer-frame" />
-        <noscript>
-          <Image src={SURAT_MABIM_THUMBNAIL} alt="Surat Pemberitahuan Dekan FT UNJ" width={600} height={849} />
-        </noscript>
+    <div className="surat-panel">
+      <div className="surat-doc">
+        <div className="surat-doc-head">
+          <FileText size={18} strokeWidth={1.7} />
+          <div>
+            <strong>Surat Pemberitahuan Resmi</strong>
+            <span>Surat agenda Masa Bimbingan (MABIM) Fakultas Teknik UNJ</span>
+          </div>
+        </div>
+        <PdfViewer src={SURAT_MABIM_URL} />
       </div>
-      <p className="surat-viewer-caption">
-        <FileText size={14} strokeWidth={1.8} /> Surat Pemberitahuan Dekan FT UNJ, No. B/2472/5.FT/KM/VII/2026 &middot;{' '}
-        <Link href={SURAT_MABIM_URL} target="_blank">
-          buka di tab baru
+
+      <div className="surat-detail">
+        <span className="surat-detail-title">
+          <Calendar size={16} strokeWidth={1.8} /> Detail Agenda
+        </span>
+        <dl>
+          {agendaDetail.map(({ icon: Icon, label, value }) => (
+            <div className="surat-detail-row" key={label}>
+              <dt>
+                <Icon size={15} strokeWidth={1.8} /> {label}
+              </dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <Link href={SURAT_MABIM_URL} target="_blank" className="button button-invert surat-download">
+          <Download size={16} /> Unduh Surat (PDF)
         </Link>
-      </p>
+      </div>
     </div>
   )
 }
 
 export function DekanSection() {
   return (
-    <section className="section-pad block-paper" id="tentang-mabim">
+    <section className="section-pad block-ink" id="tentang-mabim">
       <div className="dekan-card">
         <div className="dekan-media-wrapper">
           <Media src={MEDIA.sambutanDekan} className="dekan-media" controls overlay={false} />

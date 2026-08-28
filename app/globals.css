@@ -681,30 +681,75 @@ h1, h2 { letter-spacing: -.02em; }
 .modal-close:hover { background: #fff; }
 
 /* ==========================================
-   SURAT VIEWER
+   SURAT PANEL (dokumen + detail agenda)
    ========================================== */
-.surat-viewer-wrap { margin: 44px auto 0; max-width: 720px; }
-.surat-viewer {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow-soft);
-  overflow: hidden;
+.surat-panel {
+  background: var(--ink);
+  border-radius: 20px;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1.5fr 1fr;
+  margin: 44px auto 0;
+  max-width: 1000px;
+  padding: 32px;
 }
-.surat-viewer-caption {
+.surat-doc-head { align-items: flex-start; color: var(--paper); display: flex; gap: 12px; margin-bottom: 16px; }
+.surat-doc-head svg { color: var(--lime); flex-shrink: 0; margin-top: 2px; }
+.surat-doc-head strong { display: block; font-size: 16px; font-weight: 700; }
+.surat-doc-head span { color: rgba(243,239,230,.55); font-size: 13px; }
+
+.surat-detail { display: flex; flex-direction: column; }
+.surat-detail-title { align-items: center; color: var(--lime); display: flex; font-size: 15px; font-weight: 700; gap: 8px; margin-bottom: 18px; }
+.surat-detail dl { border-top: 1px solid var(--border-light); margin: 0; }
+.surat-detail-row { border-bottom: 1px solid var(--border-light); padding: 13px 0; }
+.surat-detail-row dt { align-items: center; color: rgba(243,239,230,.5); display: flex; font-size: 11.5px; font-weight: 700; gap: 6px; letter-spacing: .02em; margin-bottom: 5px; text-transform: uppercase; }
+.surat-detail-row dt svg { color: var(--lime); flex-shrink: 0; }
+.surat-detail-row dd { color: var(--paper); font-size: 14px; font-weight: 600; line-height: 1.4; margin: 0; }
+.surat-download {
   align-items: center;
-  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--lime);
+  color: var(--lime);
   display: flex;
-  flex-wrap: wrap;
-  font-size: 12.5px;
-  gap: 6px;
   justify-content: center;
-  margin: 12px 0 0;
-  text-align: center;
+  margin-top: 22px;
 }
-.surat-viewer-caption svg { color: var(--accent); flex-shrink: 0; }
-.surat-viewer-caption a { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
-.surat-viewer-frame { border: 0; display: block; height: 640px; width: 100%; }
+.surat-download:hover { background: rgba(232,239,105,.08); }
+.surat-download span { color: var(--lime) !important; }
+
+/* ==========================================
+   PDF VIEWER (custom, pdfjs)
+   ========================================== */
+.pdf-viewer { background: var(--navy-deep); border-radius: 12px; overflow: hidden; }
+.pdf-viewer-error { color: rgba(243,239,230,.7); padding: 40px 20px; text-align: center; }
+.pdf-viewer-error p { margin: 0 0 10px; }
+.pdf-toolbar {
+  align-items: center;
+  background: #071018;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+.pdf-toolbar-group { align-items: center; display: flex; gap: 8px; }
+.pdf-toolbar-group button, .pdf-toolbar-download {
+  align-items: center;
+  background: none;
+  border: none;
+  color: rgba(243,239,230,.7);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 6px;
+  transition: color .15s ease;
+}
+.pdf-toolbar-group button:hover:not(:disabled), .pdf-toolbar-download:hover { color: var(--lime); }
+.pdf-toolbar-group button:disabled { cursor: default; opacity: .3; }
+.pdf-page-indicator, .pdf-zoom-indicator { color: rgba(243,239,230,.7); font-family: var(--font-mono); font-size: 12px; min-width: 44px; text-align: center; }
+.pdf-canvas-wrap { display: flex; justify-content: center; max-height: 640px; overflow: auto; padding: 20px; position: relative; }
+.pdf-canvas { box-shadow: 0 4px 16px rgba(0,0,0,.35); max-width: 100%; }
+.pdf-loading { color: rgba(243,239,230,.5); font-size: 13px; padding: 60px 0; }
 @media (max-width: 700px) {
   /* backdrop-filter would make .nav's fixed position resolve against the
      header instead of the viewport, so drop it on mobile */
@@ -787,9 +832,9 @@ h1, h2 { letter-spacing: -.02em; }
   .dekan-attribution { justify-content: center; }
   .dekan-copy .arrow-link { justify-content: center; }
   .mabim-notice { text-align: left; }
-  .surat-viewer-wrap { margin-top: 32px; }
-  .surat-viewer { border-radius: 14px; }
-  .surat-viewer-frame { height: 420px; }
+  .surat-panel { border-radius: 16px; gap: 28px; grid-template-columns: 1fr; margin-top: 32px; padding: 20px; }
+  .pdf-canvas-wrap { max-height: 420px; padding: 14px; }
+  .pdf-toolbar-group { gap: 4px; }
 
   .timeline { border-radius: 14px; grid-template-columns: 1fr; }
   .timeline-item { column-gap: 14px; grid-template-columns: auto 1fr auto; padding: 18px; row-gap: 6px; }
@@ -819,4 +864,9 @@ h1, h2 { letter-spacing: -.02em; }
   .why-join { grid-template-columns: 1fr; }
   .facility-grid { grid-template-columns: repeat(2, 1fr); }
   .timeline { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1024px) {
+  .surat-panel { gap: 56px; max-width: 1240px; padding: 44px; }
+  .pdf-canvas-wrap { max-height: 820px; padding: 28px; }
 }
