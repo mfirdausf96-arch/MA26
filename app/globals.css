@@ -468,6 +468,8 @@ h1, h2 { letter-spacing: -.02em; }
    WHATSAPP FAB
    ========================================== */
 .wa-fab-wrap { bottom: 22px; position: fixed; right: 22px; z-index: 60; }
+.wa-chooser { position: relative; }
+.wa-chooser .wa-fab-menu { bottom: auto; left: 0; right: auto; top: calc(100% + 10px); }
 .wa-fab {
   align-items: center;
   background: #1f9d55;
@@ -592,7 +594,7 @@ h1, h2 { letter-spacing: -.02em; }
 .countdown-item span { color: var(--paper); font-family: var(--font-body); font-size: 12px; font-weight: 600; opacity: .7; }
 .button-invert { background: var(--paper); color: var(--ink); }
 .button-invert span { color: var(--ink) !important; }
-.wa-link { align-items: center; color: var(--paper); display: flex; font-family: var(--font-body); font-size: 13px; font-weight: 600; gap: 8px; opacity: .82; }
+.wa-link { align-items: center; background: none; border: none; color: var(--paper); cursor: pointer; display: flex; font-family: var(--font-body); font-size: 13px; font-weight: 600; gap: 8px; opacity: .82; padding: 0; }
 .wa-link:hover { opacity: 1; }
 
 /* ==========================================
@@ -679,40 +681,30 @@ h1, h2 { letter-spacing: -.02em; }
 .modal-close:hover { background: #fff; }
 
 /* ==========================================
-   SURAT PREVIEW
+   SURAT VIEWER
    ========================================== */
-.mabim-notice-with-thumb { align-items: center; flex-wrap: wrap; }
-.surat-thumb {
+.surat-viewer {
   background: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  margin: 44px auto 0;
+  max-width: 720px;
   overflow: hidden;
-  padding: 0;
-  position: relative;
-  width: 64px;
 }
-.surat-thumb img { display: block; height: auto; width: 100%; }
-.surat-thumb-zoom {
+.surat-viewer-bar {
   align-items: center;
-  background: rgba(7,22,32,.75);
-  color: var(--paper);
+  background: var(--cork);
+  border-bottom: 1px solid var(--border);
   display: flex;
-  font-size: 9px;
-  gap: 3px;
-  inset: 0;
-  justify-content: center;
-  opacity: 0;
-  position: absolute;
-  text-align: center;
-  transition: opacity .2s ease;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 12px 18px;
 }
-.surat-thumb-zoom svg { display: none; }
-.surat-thumb:hover .surat-thumb-zoom, .surat-thumb:focus-visible .surat-thumb-zoom { opacity: 1; }
-.surat-lightbox { display: flex; flex-direction: column; align-items: center; gap: 18px; max-height: 90vh; overflow-y: auto; }
-.surat-lightbox-img { border-radius: 8px; box-shadow: var(--shadow-soft-lg); height: auto; max-width: min(90vw, 560px); width: 100%; }
-.surat-lightbox-link { color: var(--lime); }
+.surat-viewer-bar span { align-items: center; color: var(--ink); display: flex; font-size: 12.5px; font-weight: 600; gap: 7px; }
+.surat-viewer-bar span svg { color: var(--accent); flex-shrink: 0; }
+.surat-viewer-bar a { color: var(--accent); flex-shrink: 0; font-size: 12.5px; font-weight: 700; }
+.surat-viewer-frame { border: 0; display: block; height: 640px; width: 100%; }
 @media (max-width: 700px) {
   /* backdrop-filter would make .nav's fixed position resolve against the
      header instead of the viewport, so drop it on mobile */
@@ -795,6 +787,9 @@ h1, h2 { letter-spacing: -.02em; }
   .dekan-attribution { justify-content: center; }
   .dekan-copy .arrow-link { justify-content: center; }
   .mabim-notice { text-align: left; }
+  .surat-viewer { border-radius: 16px; margin-top: 32px; }
+  .surat-viewer-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .surat-viewer-frame { height: 420px; }
 
   .timeline { border-radius: 14px; grid-template-columns: 1fr; }
   .timeline-item { column-gap: 14px; grid-template-columns: auto 1fr auto; padding: 18px; row-gap: 6px; }

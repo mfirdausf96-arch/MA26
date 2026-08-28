@@ -15,12 +15,6 @@ export const MEDIA = {
 export const SURAT_MABIM_URL = '/dokumen/surat-pemberitahuan-mabim-ft-unj.pdf'
 export const SURAT_MABIM_THUMBNAIL = '/dokumen/surat-thumbnail.jpg'
 
-const WA_NUMBER = '6281288421988'
-const WA_TEMPLATE =
-  'Halo Kak, saya mau bertanya soal Muslim Adventure 2026 (26-28 September, Madani Forest Subang).\n\nNama: \nProdi/Angkatan: \nPertanyaan: '
-
-export const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEMPLATE)}`
-
 function narahubungUrl(number: string, sapaan: string) {
   const template = `Assalamu'alaikum ${sapaan}, saya mau bertanya soal Muslim Adventure 2026.\n\nNama: \nProdi/Angkatan: \nPertanyaan: `
   return `https://wa.me/${number}?text=${encodeURIComponent(template)}`

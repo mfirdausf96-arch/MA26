@@ -30,7 +30,7 @@ import {
   Mail,
   AlarmClock,
   Users,
-  Search,
+  FileText,
 } from 'lucide-react'
 
 function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
@@ -62,7 +62,6 @@ import {
   REGISTER_URL,
   SURAT_MABIM_THUMBNAIL,
   SURAT_MABIM_URL,
-  WA_URL,
 } from '@/lib/media'
 import { Polaroid } from './bits'
 
@@ -325,46 +324,22 @@ export function Shell({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function SuratPreview() {
-  const [show, setShow] = useState(false)
-
+export function SuratViewer() {
   return (
-    <>
-      <button className="surat-thumb" onClick={() => setShow(true)}>
-        <Image src={SURAT_MABIM_THUMBNAIL} alt="Surat Pemberitahuan Dekan FT UNJ" width={200} height={283} />
-        <span className="surat-thumb-zoom">
-          <Search size={16} strokeWidth={2} /> Lihat surat
+    <div className="surat-viewer">
+      <div className="surat-viewer-bar">
+        <span>
+          <FileText size={15} strokeWidth={1.8} /> Surat Pemberitahuan Dekan FT UNJ &middot; No. B/2472/5.FT/KM/VII/2026
         </span>
-      </button>
-
-      {show && (
-        <div
-          className="modal"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Surat Pemberitahuan Dekan FT UNJ"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setShow(false)
-          }}
-        >
-          <button className="modal-close" onClick={() => setShow(false)} autoFocus>
-            Tutup ×
-          </button>
-          <div className="surat-lightbox">
-            <Image
-              src={SURAT_MABIM_THUMBNAIL}
-              alt="Surat Pemberitahuan Dekan FT UNJ"
-              width={900}
-              height={1273}
-              className="surat-lightbox-img"
-            />
-            <Link href={SURAT_MABIM_URL} target="_blank" className="arrow-link surat-lightbox-link">
-              Buka PDF asli (bisa disimpan)
-            </Link>
-          </div>
-        </div>
-      )}
-    </>
+        <Link href={SURAT_MABIM_URL} target="_blank">
+          Buka penuh
+        </Link>
+      </div>
+      <iframe src={`${SURAT_MABIM_URL}#toolbar=0`} title="Surat Pemberitahuan Dekan FT UNJ" className="surat-viewer-frame" />
+      <noscript>
+        <Image src={SURAT_MABIM_THUMBNAIL} alt="Surat Pemberitahuan Dekan FT UNJ" width={600} height={849} />
+      </noscript>
+    </div>
   )
 }
 
@@ -385,16 +360,15 @@ export function DekanSection() {
             <strong>Dekan Fakultas Teknik</strong>
             <span>Universitas Negeri Jakarta</span>
           </div>
-          <div className="mabim-notice mabim-notice-with-thumb">
+          <div className="mabim-notice">
             <Megaphone size={18} strokeWidth={1.7} />
             <p>
               Tercantum dalam surat agenda Masa Bimbingan (MABIM) dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
-              Surat Pemberitahuan Dekan FT UNJ No. B/2472/5.FT/KM/VII/2026.
             </p>
-            <SuratPreview />
           </div>
         </div>
       </div>
+      <SuratViewer />
     </section>
   )
 }
@@ -680,28 +654,45 @@ export function InfoPraktis() {
   )
 }
 
+function WaMenu({ onClose }: { onClose: () => void }) {
+  return (
+    <>
+      <div className="wa-fab-backdrop" onClick={onClose} />
+      <div className="wa-fab-menu">
+        <span className="wa-fab-menu-title">Antum ikhwan atau akhwat?</span>
+        <Link href={NARAHUBUNG.ikhwan.url} target="_blank" onClick={onClose}>
+          Ikhwan &middot; {NARAHUBUNG.ikhwan.name}
+        </Link>
+        <Link href={NARAHUBUNG.akhwat.url} target="_blank" onClick={onClose}>
+          Akhwat &middot; {NARAHUBUNG.akhwat.name}
+        </Link>
+      </div>
+    </>
+  )
+}
+
 export function WhatsAppFab() {
   const [open, setOpen] = useState(false)
 
   return (
     <div className="wa-fab-wrap">
-      {open && (
-        <>
-          <div className="wa-fab-backdrop" onClick={() => setOpen(false)} />
-          <div className="wa-fab-menu">
-            <span className="wa-fab-menu-title">Antum ikhwan atau akhwat?</span>
-            <Link href={NARAHUBUNG.ikhwan.url} target="_blank" onClick={() => setOpen(false)}>
-              Ikhwan &middot; {NARAHUBUNG.ikhwan.name}
-            </Link>
-            <Link href={NARAHUBUNG.akhwat.url} target="_blank" onClick={() => setOpen(false)}>
-              Akhwat &middot; {NARAHUBUNG.akhwat.name}
-            </Link>
-          </div>
-        </>
-      )}
+      {open && <WaMenu onClose={() => setOpen(false)} />}
       <button className="wa-fab" onClick={() => setOpen((v) => !v)} aria-label="Tanya panitia via WhatsApp">
         <MessageCircle size={22} strokeWidth={2} />
         <span>Tanya Panitia</span>
+      </button>
+    </div>
+  )
+}
+
+export function WaAskButton({ className, children }: { className?: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="wa-chooser">
+      {open && <WaMenu onClose={() => setOpen(false)} />}
+      <button type="button" className={className} onClick={() => setOpen((v) => !v)}>
+        {children}
       </button>
     </div>
   )
@@ -782,9 +773,9 @@ export function RegisterCTA({ id = 'daftar' }: { id?: string }) {
         <Link className="button button-invert" href={REGISTER_URL} target="_blank">
           Daftar Sekarang
         </Link>
-        <Link className="wa-link" href={WA_URL} target="_blank">
+        <WaAskButton className="wa-link">
           <MessageCircle size={16} /> Tanya via WhatsApp
-        </Link>
+        </WaAskButton>
       </div>
     </section>
   )
