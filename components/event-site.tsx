@@ -105,6 +105,15 @@ export function SiteAudioProvider({ children }: { children: React.ReactNode }) {
     activeVideo.current = el
   }, [])
 
+  useEffect(() => {
+    function handleVisibility() {
+      if (document.hidden) duck()
+      else unduck()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+    return () => document.removeEventListener('visibilitychange', handleVisibility)
+  }, [duck, unduck])
+
   function handleEnter() {
     setEntered(true)
     audioRef.current?.play().catch(() => {})
