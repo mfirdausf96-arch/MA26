@@ -20,9 +20,14 @@ const WA_TEMPLATE =
 
 export const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEMPLATE)}`
 
+function narahubungUrl(number: string, sapaan: string) {
+  const template = `Assalamu'alaikum ${sapaan}, saya mau bertanya soal Muslim Adventure 2026.\n\nNama: \nProdi/Angkatan: \nPertanyaan: `
+  return `https://wa.me/${number}?text=${encodeURIComponent(template)}`
+}
+
 export const NARAHUBUNG = {
-  ikhwan: { name: 'Farhan Alhusein', url: 'https://wa.me/6289629911449' },
-  akhwat: { name: 'Bunga Amalya Hasanah', url: 'https://wa.me/6281906084132' },
+  ikhwan: { name: 'Farhan Alhusein', url: narahubungUrl('6289629911449', 'Kak Farhan') },
+  akhwat: { name: 'Bunga Amalya Hasanah', url: narahubungUrl('6281906084132', 'Kak Bunga') },
 }
 
 export const GALERI = Array.from(
