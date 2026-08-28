@@ -317,7 +317,13 @@ export function RecapVideoSlot() {
           onPause={unduck}
           onEnded={unduck}
         />
-        <button className="recap-button hero-recap-close" onClick={close}>
+        <button
+          className="recap-button hero-recap-close"
+          onClick={() => {
+            unduck()
+            close()
+          }}
+        >
           Tutup video
         </button>
       </div>
@@ -597,7 +603,13 @@ export function AfterMovie() {
               onPause={unduck}
               onEnded={unduck}
             />
-            <button className="recap-button aftermovie-hide" onClick={() => setShow(false)}>
+            <button
+              className="recap-button aftermovie-hide"
+              onClick={() => {
+                unduck()
+                setShow(false)
+              }}
+            >
               Sembunyikan video
             </button>
           </div>
