@@ -13,6 +13,7 @@ export const MEDIA = {
 }
 
 export const SURAT_MABIM_URL = '/dokumen/surat-pemberitahuan-mabim-ft-unj.pdf'
+export const SURAT_MABIM_THUMBNAIL = '/dokumen/surat-thumbnail.jpg'
 
 const WA_NUMBER = '6281288421988'
 const WA_TEMPLATE =

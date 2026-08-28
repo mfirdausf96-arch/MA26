@@ -30,6 +30,7 @@ import {
   Mail,
   AlarmClock,
   Users,
+  Search,
 } from 'lucide-react'
 
 function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
@@ -52,7 +53,17 @@ function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
     </svg>
   )
 }
-import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, NARAHUBUNG, REGISTER_URL, SURAT_MABIM_URL, WA_URL } from '@/lib/media'
+import {
+  EVENT_START,
+  GALERI,
+  LOCATION_MAPS_URL,
+  MEDIA,
+  NARAHUBUNG,
+  REGISTER_URL,
+  SURAT_MABIM_THUMBNAIL,
+  SURAT_MABIM_URL,
+  WA_URL,
+} from '@/lib/media'
 import { Polaroid } from './bits'
 
 const AudioCtx = createContext<{ duck: () => void; unduck: () => void; playExclusive: (el: HTMLVideoElement) => void }>({
@@ -247,12 +258,38 @@ export function Media({
   )
 }
 
-export function RecapButton() {
+const RecapCtx = createContext<{ show: boolean; open: () => void; close: () => void }>({
+  show: false,
+  open: () => {},
+  close: () => {},
+})
+
+export function RecapProvider({ children }: { children: React.ReactNode }) {
   const [show, setShow] = useState(false)
+  return (
+    <RecapCtx.Provider value={{ show, open: () => setShow(true), close: () => setShow(false) }}>
+      {children}
+    </RecapCtx.Provider>
+  )
+}
+
+export function RecapButton() {
+  const { open } = useContext(RecapCtx)
+  return (
+    <button className="recap-button" onClick={open}>
+      <span className="play">▶</span> Tonton Recap
+    </button>
+  )
+}
+
+export function RecapVideoSlot() {
+  const { show, close } = useContext(RecapCtx)
   const { duck, unduck, playExclusive } = useSiteAudio()
 
-  if (show) {
-    return (
+  if (!show) return null
+
+  return (
+    <div className="hero-recap-slot">
       <div className="hero-recap-player">
         <video
           src={MEDIA.recapVideo}
@@ -267,28 +304,67 @@ export function RecapButton() {
           onPause={unduck}
           onEnded={unduck}
         />
-        <button className="recap-button hero-recap-close" onClick={() => setShow(false)}>
+        <button className="recap-button hero-recap-close" onClick={close}>
           Tutup video
         </button>
       </div>
-    )
-  }
-
-  return (
-    <button className="recap-button" onClick={() => setShow(true)}>
-      <span className="play">▶</span> Tonton Recap
-    </button>
+    </div>
   )
 }
 
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <SiteAudioProvider>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-      <WhatsAppFab />
+      <RecapProvider>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <WhatsAppFab />
+      </RecapProvider>
     </SiteAudioProvider>
+  )
+}
+
+export function SuratPreview() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <>
+      <button className="surat-thumb" onClick={() => setShow(true)}>
+        <Image src={SURAT_MABIM_THUMBNAIL} alt="Surat Pemberitahuan Dekan FT UNJ" width={200} height={283} />
+        <span className="surat-thumb-zoom">
+          <Search size={16} strokeWidth={2} /> Lihat surat
+        </span>
+      </button>
+
+      {show && (
+        <div
+          className="modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Surat Pemberitahuan Dekan FT UNJ"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShow(false)
+          }}
+        >
+          <button className="modal-close" onClick={() => setShow(false)} autoFocus>
+            Tutup ×
+          </button>
+          <div className="surat-lightbox">
+            <Image
+              src={SURAT_MABIM_THUMBNAIL}
+              alt="Surat Pemberitahuan Dekan FT UNJ"
+              width={900}
+              height={1273}
+              className="surat-lightbox-img"
+            />
+            <Link href={SURAT_MABIM_URL} target="_blank" className="arrow-link surat-lightbox-link">
+              Buka PDF asli (bisa disimpan)
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -309,16 +385,14 @@ export function DekanSection() {
             <strong>Dekan Fakultas Teknik</strong>
             <span>Universitas Negeri Jakarta</span>
           </div>
-          <div className="mabim-notice">
+          <div className="mabim-notice mabim-notice-with-thumb">
             <Megaphone size={18} strokeWidth={1.7} />
             <p>
               Tercantum dalam surat agenda Masa Bimbingan (MABIM) dan wajib diikuti seluruh mahasiswa baru Fakultas Teknik.
               Surat Pemberitahuan Dekan FT UNJ No. B/2472/5.FT/KM/VII/2026.
             </p>
+            <SuratPreview />
           </div>
-          <Link href={SURAT_MABIM_URL} target="_blank" className="arrow-link">
-            Baca Surat Pemberitahuan (PDF)
-          </Link>
         </div>
       </div>
     </section>

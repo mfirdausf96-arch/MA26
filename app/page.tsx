@@ -8,6 +8,7 @@ import {
   Gallery,
   PilarGrid,
   RecapButton,
+  RecapVideoSlot,
   RegisterCTA,
   Shell,
   Stat,
@@ -48,6 +49,8 @@ export default function Home() {
       </section>
 
       <Marquee items={tickerItems} tone="sunset" />
+
+      <RecapVideoSlot />
 
       {/* 2. Tentang Acara / Konsep */}
       <section className="section-pad block-paper" id="tentang">
