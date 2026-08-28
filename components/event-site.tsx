@@ -249,9 +249,9 @@ export function Media({
 
 export function RecapButton() {
   return (
-    <Link href="#aftermovie" className="recap-button">
+    <a href="#aftermovie" className="recap-button">
       <span className="play">▶</span> Tonton Recap
-    </Link>
+    </a>
   )
 }
 
@@ -441,6 +441,16 @@ export function Gallery() {
 export function AfterMovie() {
   const [show, setShow] = useState(false)
   const { duck, unduck, playExclusive } = useSiteAudio()
+
+  useEffect(() => {
+    const checkHash = () => {
+      if (window.location.hash === '#aftermovie') setShow(true)
+    }
+    checkHash()
+    window.addEventListener('hashchange', checkHash)
+    return () => window.removeEventListener('hashchange', checkHash)
+  }, [])
+
   return (
     <section
       className="aftermovie"
