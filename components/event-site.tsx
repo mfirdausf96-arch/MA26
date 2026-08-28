@@ -28,6 +28,8 @@ import {
   HeartPulse,
   Signal,
   Mail,
+  AlarmClock,
+  Users,
 } from 'lucide-react'
 
 function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
@@ -50,10 +52,14 @@ function InstagramIcon({ size = 24, strokeWidth = 2, className = '' }) {
     </svg>
   )
 }
-import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, REGISTER_URL, SURAT_MABIM_URL, WA_URL } from '@/lib/media'
+import { EVENT_START, GALERI, LOCATION_MAPS_URL, MEDIA, NARAHUBUNG, REGISTER_URL, SURAT_MABIM_URL, WA_URL } from '@/lib/media'
 import { Polaroid } from './bits'
 
-const AudioCtx = createContext<{ duck: () => void; unduck: () => void }>({ duck: () => {}, unduck: () => {} })
+const AudioCtx = createContext<{ duck: () => void; unduck: () => void; playExclusive: (el: HTMLVideoElement) => void }>({
+  duck: () => {},
+  unduck: () => {},
+  playExclusive: () => {},
+})
 
 export function useSiteAudio() {
   return useContext(AudioCtx)
@@ -63,6 +69,7 @@ export function SiteAudioProvider({ children }: { children: React.ReactNode }) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [entered, setEntered] = useState(false)
   const duckCount = useRef(0)
+  const activeVideo = useRef<HTMLVideoElement | null>(null)
 
   const duck = useCallback(() => {
     duckCount.current += 1
@@ -76,20 +83,30 @@ export function SiteAudioProvider({ children }: { children: React.ReactNode }) {
     }
   }, [entered])
 
+  const playExclusive = useCallback((el: HTMLVideoElement) => {
+    if (activeVideo.current && activeVideo.current !== el) {
+      activeVideo.current.pause()
+    }
+    activeVideo.current = el
+  }, [])
+
   function handleEnter() {
     setEntered(true)
     audioRef.current?.play().catch(() => {})
   }
 
   return (
-    <AudioCtx.Provider value={{ duck, unduck }}>
+    <AudioCtx.Provider value={{ duck, unduck, playExclusive }}>
       <audio ref={audioRef} src={MEDIA.backsound} loop preload="none" />
       {children}
       {!entered && (
         <div className="entry-overlay">
-          <button className="entry-button" onClick={handleEnter}>
-            Mulai Petualanganmu sekarang!
-          </button>
+          <div className="entry-card">
+            <p className="entry-headline">Mulai Petualanganmu sekarang!</p>
+            <button className="entry-button" onClick={handleEnter}>
+              Mulai
+            </button>
+          </div>
         </div>
       )}
     </AudioCtx.Provider>
@@ -157,11 +174,11 @@ export function Footer() {
           </div>
           <div className="footer-col">
             <strong>Narahubung</strong>
-            <Link href="https://wa.me/6289629911449" target="_blank">
-              <MessageCircle size={16} strokeWidth={1.8} /> Farhan Alhusein (L)
+            <Link href={NARAHUBUNG.ikhwan.url} target="_blank">
+              <MessageCircle size={16} strokeWidth={1.8} /> {NARAHUBUNG.ikhwan.name} (Ikhwan)
             </Link>
-            <Link href="https://wa.me/6281906084132" target="_blank">
-              <MessageCircle size={16} strokeWidth={1.8} /> Bunga Amalya Hasanah (P)
+            <Link href={NARAHUBUNG.akhwat.url} target="_blank">
+              <MessageCircle size={16} strokeWidth={1.8} /> {NARAHUBUNG.akhwat.name} (Akhwat)
             </Link>
           </div>
         </div>
@@ -191,7 +208,7 @@ export function Media({
 }) {
   const mediaSrc = src || '/placeholder.jpg'
   const isVideo = mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.webm') || mediaSrc.endsWith('.mov')
-  const { duck, unduck } = useSiteAudio()
+  const { duck, unduck, playExclusive } = useSiteAudio()
 
   return (
     <div className={`media ${className}`} style={{ position: 'relative', overflow: 'hidden' }}>
@@ -203,7 +220,14 @@ export function Media({
           muted={!controls}
           loop={!controls}
           playsInline
-          onPlay={controls ? duck : undefined}
+          onPlay={
+            controls
+              ? (e) => {
+                  playExclusive(e.currentTarget)
+                  duck()
+                }
+              : undefined
+          }
           onPause={controls ? unduck : undefined}
           onEnded={controls ? unduck : undefined}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -247,11 +271,14 @@ export function DekanSection() {
     <section className="section-pad block-paper" id="tentang-mabim">
       <div className="dekan-card">
         <div className="dekan-media-wrapper">
-          <Media src={MEDIA.sambutanDekan} className="dekan-media" label="Sambutan Dekan FT UNJ" controls />
+          <Media src={MEDIA.sambutanDekan} className="dekan-media" controls overlay={false} />
         </div>
         <div className="dekan-copy">
           <span className="eyebrow">Apa kata Dekan Fakultas Teknik UNJ</span>
-          <blockquote className="dekan-quote">Muslim Adventure 2026, jalan-jalan berfaedah.</blockquote>
+          <blockquote className="dekan-quote">
+            <span className="dekan-quote-mark">&ldquo;</span>
+            <em>Muslim Adventure 2026</em>, jalan-jalan berfaedah.
+          </blockquote>
           <div className="dekan-attribution">
             <strong>Dekan Fakultas Teknik</strong>
             <span>Universitas Negeri Jakarta</span>
@@ -413,7 +440,7 @@ export function Gallery() {
 
 export function AfterMovie() {
   const [show, setShow] = useState(false)
-  const { duck, unduck } = useSiteAudio()
+  const { duck, unduck, playExclusive } = useSiteAudio()
   return (
     <section
       className="aftermovie"
@@ -439,7 +466,10 @@ export function AfterMovie() {
               autoPlay
               playsInline
               className="aftermovie-video"
-              onPlay={duck}
+              onPlay={(e) => {
+                playExclusive(e.currentTarget)
+                duck()
+              }}
               onPause={unduck}
               onEnded={unduck}
             />
@@ -541,16 +571,29 @@ export function InfoPraktis() {
 }
 
 export function WhatsAppFab() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <Link
-      className="wa-fab"
-      href={WA_URL}
-      target="_blank"
-      aria-label="Tanya panitia via WhatsApp"
-    >
-      <MessageCircle size={22} strokeWidth={2} />
-      <span>Tanya Panitia</span>
-    </Link>
+    <div className="wa-fab-wrap">
+      {open && (
+        <>
+          <div className="wa-fab-backdrop" onClick={() => setOpen(false)} />
+          <div className="wa-fab-menu">
+            <span className="wa-fab-menu-title">Antum ikhwan atau akhwat?</span>
+            <Link href={NARAHUBUNG.ikhwan.url} target="_blank" onClick={() => setOpen(false)}>
+              Ikhwan &middot; {NARAHUBUNG.ikhwan.name}
+            </Link>
+            <Link href={NARAHUBUNG.akhwat.url} target="_blank" onClick={() => setOpen(false)}>
+              Akhwat &middot; {NARAHUBUNG.akhwat.name}
+            </Link>
+          </div>
+        </>
+      )}
+      <button className="wa-fab" onClick={() => setOpen((v) => !v)} aria-label="Tanya panitia via WhatsApp">
+        <MessageCircle size={22} strokeWidth={2} />
+        <span>Tanya Panitia</span>
+      </button>
+    </div>
   )
 }
 
@@ -595,10 +638,37 @@ export function RegisterCTA({ id = 'daftar' }: { id?: string }) {
           Kuota terbatas.<br />
           <em>Amankan tempatmu.</em>
         </h2>
-        <p className="register-note">Diskon spesial untuk yang daftar bersama temannya.</p>
+        <Countdown />
       </div>
       <div className="register-actions">
-        <Countdown />
+        <div className="price-card">
+          <div className="price-warning">
+            <AlarmClock size={18} strokeWidth={1.8} />
+            <p>
+              <strong>D-Day.</strong> Jangan sampai ketinggalan — pendaftaran dibuka hanya sampai
+              30 Agustus 2026.
+            </p>
+          </div>
+          <div className="price-base">
+            <span>HTM</span>
+            <strong>Rp100.000</strong>
+            <span>/orang</span>
+          </div>
+          <div className="price-discount">
+            <Users size={16} strokeWidth={1.8} />
+            <span>Diskon 20% untuk daftar bareng teman</span>
+          </div>
+          <ul className="price-tiers">
+            <li>
+              <span>Ber-3</span>
+              <strong>Rp90.000/orang</strong>
+            </li>
+            <li>
+              <span>Ber-5</span>
+              <strong>Rp80.000/orang</strong>
+            </li>
+          </ul>
+        </div>
         <Link className="button button-invert" href={REGISTER_URL} target="_blank">
           Daftar Sekarang
         </Link>

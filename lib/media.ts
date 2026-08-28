@@ -20,6 +20,11 @@ const WA_TEMPLATE =
 
 export const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEMPLATE)}`
 
+export const NARAHUBUNG = {
+  ikhwan: { name: 'Farhan Alhusein', url: 'https://wa.me/6289629911449' },
+  akhwat: { name: 'Bunga Amalya Hasanah', url: 'https://wa.me/6281906084132' },
+}
+
 export const GALERI = Array.from(
   { length: 16 },
   (_, i) => `/images/galeri/doc-${String(i + 1).padStart(2, '0')}.jpg`,

@@ -147,7 +147,7 @@ h1, h2 { letter-spacing: -.02em; }
 .play { color: var(--lime); font-size: 12px; }
 
 .media { background-position: center; background-size: cover; border-radius: 16px; min-height: 280px; position: relative; }
-.media-overlay { background: linear-gradient(180deg, transparent 55%, rgba(7,22,32,.65)); inset: 0; position: absolute; }
+.media-overlay { background: linear-gradient(180deg, transparent 55%, rgba(7,22,32,.65)); inset: 0; pointer-events: none; position: absolute; }
 .media-label { bottom: 16px; color: var(--paper); font-family: var(--font-body); font-size: 12px; font-weight: 600; left: 18px; position: absolute; z-index: 2; }
 
 /* ==========================================
@@ -207,24 +207,15 @@ h1, h2 { letter-spacing: -.02em; }
 .dekan-media .media-label { display: none; }
 .dekan-copy .eyebrow { color: var(--lime); }
 .dekan-quote {
-  color: var(--paper);
+  color: rgba(243,239,230,.9);
   font-family: var(--font-display);
-  font-size: clamp(28px, 3.2vw, 40px);
+  font-size: clamp(24px, 3.2vw, 40px);
   font-weight: 500;
-  line-height: 1.2;
-  margin: 16px 0 0 34px;
-  position: relative;
+  line-height: 1.25;
+  margin: 18px 0 0;
 }
-.dekan-quote::before {
-  color: var(--lime);
-  content: '\201C';
-  font-size: 2.2em;
-  left: -.7em;
-  line-height: 1;
-  opacity: .55;
-  position: absolute;
-  top: -.06em;
-}
+.dekan-quote em { color: var(--lime); font-style: normal; font-weight: 600; }
+.dekan-quote-mark { color: var(--lime); font-size: 1.3em; margin-right: 2px; opacity: .7; }
 .dekan-attribution { align-items: baseline; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .dekan-attribution strong { color: var(--paper); font-size: 14px; font-weight: 700; }
 .dekan-attribution span { color: rgba(243,239,230,.55); font-size: 14px; }
@@ -471,25 +462,43 @@ h1, h2 { letter-spacing: -.02em; }
 /* ==========================================
    WHATSAPP FAB
    ========================================== */
+.wa-fab-wrap { bottom: 22px; position: fixed; right: 22px; z-index: 60; }
 .wa-fab {
   align-items: center;
   background: #1f9d55;
+  border: none;
   border-radius: 999px;
-  bottom: 22px;
   box-shadow: 0 10px 26px rgba(11,30,43,.3);
   color: #fff;
+  cursor: pointer;
   display: flex;
+  font-family: var(--font-body);
   font-size: 14px;
   font-weight: 700;
   gap: 10px;
   padding: 14px 20px;
-  position: fixed;
-  right: 22px;
+  position: relative;
   transition: background .2s ease, transform .2s ease;
-  z-index: 60;
 }
 .wa-fab:hover { background: #188547; transform: translateY(-2px); }
 .wa-fab svg { flex-shrink: 0; }
+.wa-fab-backdrop { background: transparent; inset: 0; position: fixed; z-index: -1; }
+.wa-fab-menu {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft-lg);
+  bottom: calc(100% + 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 240px;
+  padding: 14px;
+  position: absolute;
+  right: 0;
+}
+.wa-fab-menu-title { color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+.wa-fab-menu a { border-radius: 8px; color: var(--ink); font-size: 14px; font-weight: 600; padding: 10px; transition: background .15s ease; }
+.wa-fab-menu a:hover { background: rgba(31,157,85,.1); }
 
 /* ==========================================
    FAQ
@@ -542,6 +551,35 @@ h1, h2 { letter-spacing: -.02em; }
 .register h2 { color: var(--paper); font-size: clamp(38px, 6vw, 76px); line-height: 1.05; margin: 16px 0 0; }
 .register h2 em { color: var(--lime); font-family: var(--font-display); font-style: italic; font-weight: 500; }
 .register-note { color: var(--lime); font-size: 14.5px; font-weight: 600; margin: 14px 0 0; }
+
+.price-card {
+  background: rgba(11,30,43,.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  padding: 20px 22px;
+  width: 100%;
+}
+.price-warning { align-items: flex-start; display: flex; gap: 10px; margin-bottom: 16px; }
+.price-warning svg { color: var(--lime); flex-shrink: 0; margin-top: 2px; }
+.price-warning p { color: rgba(243,239,230,.85); font-size: 13px; line-height: 1.5; margin: 0; }
+.price-warning strong { color: var(--paper); }
+.price-base {
+  align-items: baseline;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+}
+.price-base span:first-child { color: var(--muted); font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.price-base strong { color: var(--paper); font-family: var(--font-display); font-size: 30px; }
+.price-base span:last-child { color: var(--muted); font-size: 13px; }
+.price-discount { align-items: center; color: var(--lime); display: flex; font-size: 13px; font-weight: 600; gap: 8px; margin-bottom: 10px; }
+.price-tiers { display: grid; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.price-tiers li { align-items: center; display: flex; justify-content: space-between; }
+.price-tiers span { color: rgba(243,239,230,.65); font-size: 13.5px; }
+.price-tiers strong { color: var(--paper); font-size: 13.5px; font-weight: 700; }
 .register-actions { align-items: flex-start; display: flex; flex-direction: column; gap: 18px; }
 .countdown { display: flex; gap: 18px; }
 .countdown-item { text-align: center; }
@@ -575,7 +613,8 @@ h1, h2 { letter-spacing: -.02em; }
    ========================================== */
 .entry-overlay {
   align-items: center;
-  background: var(--ink);
+  background: rgba(7,22,32,.72);
+  backdrop-filter: blur(10px);
   display: flex;
   inset: 0;
   justify-content: center;
@@ -584,18 +623,31 @@ h1, h2 { letter-spacing: -.02em; }
   text-align: center;
   z-index: 200;
 }
+.entry-card {
+  background: var(--ink);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft-lg);
+  padding: 40px 36px;
+}
+.entry-headline {
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3.2vw, 28px);
+  font-style: italic;
+  font-weight: 500;
+  margin: 0 0 24px;
+}
 .entry-button {
   background: var(--accent);
   border: none;
   border-radius: 999px;
-  box-shadow: var(--shadow-soft-lg);
   color: var(--paper);
   cursor: pointer;
-  font-family: var(--font-display);
-  font-size: clamp(20px, 3.4vw, 30px);
-  font-style: italic;
-  font-weight: 500;
-  padding: 22px 40px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 36px;
   transition: transform .2s ease, background .2s ease;
 }
 .entry-button:hover { background: #3563c4; transform: scale(1.03); }
@@ -647,7 +699,7 @@ h1, h2 { letter-spacing: -.02em; }
     padding: 64px 20px 36px;
   }
   .hero-copy { width: 100%; }
-  .hero-copy .eyebrow { font-size: 11.5px; letter-spacing: .04em; margin-bottom: 12px; }
+  .hero-copy .eyebrow { font-size: 10px; letter-spacing: .02em; padding: 6px 12px; margin-bottom: 12px; }
   .hero h1 { font-size: clamp(38px, 11vw, 52px); line-height: 1.02; margin-bottom: 16px; }
   .hero-copy p { font-size: 15.5px; line-height: 1.5; max-width: 34ch; opacity: .82; }
   .hero-actions { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 26px; }
@@ -680,7 +732,6 @@ h1, h2 { letter-spacing: -.02em; }
 
   .dekan-card { border-radius: 20px; gap: 24px; grid-template-columns: 1fr; padding: 28px 24px; text-align: center; }
   .dekan-media-wrapper { margin: 0 auto; max-width: 220px; }
-  .dekan-quote { display: inline-block; margin-left: 12px; }
   .dekan-attribution { justify-content: center; }
   .dekan-copy .arrow-link { justify-content: center; }
   .mabim-notice { text-align: left; }
@@ -691,8 +742,10 @@ h1, h2 { letter-spacing: -.02em; }
   .timeline-body p { font-size: 13.5px; grid-column: 2 / -1; max-width: none; }
   .timeline-icon { align-self: start; }
 
-  .wa-fab { bottom: 16px; padding: 13px 16px; right: 16px; }
+  .wa-fab-wrap { bottom: 16px; right: 16px; }
+  .wa-fab { padding: 13px 16px; }
   .wa-fab span { display: none; }
+  .wa-fab-menu { min-width: 220px; right: -4px; }
 
   .gallery-item { height: 150px; }
 
