@@ -750,66 +750,16 @@ export function WaAskButton({ className, children }: { className?: string; child
   )
 }
 
-function buildIcs({
-  uid,
-  title,
-  description,
-  location,
-  start,
-  end,
-}: {
-  uid: string
-  title: string
-  description: string
-  location: string
-  start: string
-  end: string
-}) {
-  const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Muslim Adventure 2026//ID',
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${stamp}`,
-    `DTSTART;VALUE=DATE:${start}`,
-    `DTEND;VALUE=DATE:${end}`,
-    `SUMMARY:${title}`,
-    `LOCATION:${location}`,
-    `DESCRIPTION:${description}`,
-    'END:VEVENT',
-    'END:VCALENDAR',
-  ].join('\r\n')
-  return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`
-}
-
 const agendaItems = [
   {
     label: 'Pra Muslim Adventure',
     date: '12 September 2026',
-    file: 'pra-muslim-adventure-2026.ics',
-    ics: buildIcs({
-      uid: 'pra-ma2026@muslimadventure.id',
-      title: 'Pra Muslim Adventure 2026',
-      description: 'Rangkaian pra-acara Muslim Adventure 2026, FSI Al-Biruni Fakultas Teknik UNJ.',
-      location: 'Madani Forest, Subang',
-      start: '20260912',
-      end: '20260913',
-    }),
+    href: '/calendar/pra-muslim-adventure-2026.ics',
   },
   {
     label: 'Muslim Adventure',
     date: '25 - 27 September 2026',
-    file: 'muslim-adventure-2026.ics',
-    ics: buildIcs({
-      uid: 'pas-ma2026@muslimadventure.id',
-      title: 'Muslim Adventure 2026',
-      description: 'Muslim Adventure 2026 di Madani Forest, Subang. Bagian dari MABIM Fakultas Teknik UNJ.',
-      location: 'Madani Forest, Subang',
-      start: '20260925',
-      end: '20260928',
-    }),
+    href: '/calendar/muslim-adventure-2026.ics',
   },
 ]
 
@@ -825,7 +775,7 @@ export function AgendaHighlight() {
             <strong>{item.label}</strong>
             <span>{item.date}</span>
           </div>
-          <a href={item.ics} download={item.file} className="agenda-add">
+          <a href={item.href} className="agenda-add">
             <CalendarPlus size={15} strokeWidth={2} /> Kalender
           </a>
         </div>
