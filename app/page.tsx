@@ -112,6 +112,14 @@ export default function Home() {
         <Reveal className="section-head">
           <span className="eyebrow">Rundown</span>
           <h2>Kegiatan selama tiga hari</h2>
+          <div className="agenda-dates">
+            <span>
+              <strong>Pra Muslim Adventure</strong> &middot; 12 September 2026
+            </span>
+            <span>
+              <strong>Muslim Adventure</strong> &middot; 25 - 27 September 2026
+            </span>
+          </div>
         </Reveal>
         <Reveal delay={0.1}>
           <Timeline />
