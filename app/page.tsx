@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import {
   AfterMovie,
   AgendaHighlight,
@@ -8,15 +9,13 @@ import {
   FAQ,
   Gallery,
   PilarGrid,
-  RecapButton,
-  RecapVideoSlot,
   RegisterCTA,
   Shell,
   Stat,
   Timeline,
 } from '@/components/event-site'
 import { Marquee, Reveal } from '@/components/bits'
-import { MEDIA, REGISTER_URL } from '@/lib/media'
+import { MEDIA } from '@/lib/media'
 
 const tickerItems = ['Muslim Adventure 2026', '25–27 September', 'Madani Forest, Subang', 'Masa Bimbingan Fakultas Teknik UNJ']
 
@@ -41,17 +40,14 @@ export default function Home() {
             untuk kembali terhubung, memulihkan energi, dan bertumbuh bersama.
           </p>
           <div className="hero-actions">
-            <Link className="button" href={REGISTER_URL} target="_blank">
-              Daftar Sekarang
+            <Link className="button hero-cta" href="#daftar">
+              Daftar Sekarang <ArrowRight size={18} strokeWidth={2.2} className="hero-cta-arrow" />
             </Link>
-            <RecapButton />
           </div>
         </div>
       </section>
 
       <Marquee items={tickerItems} tone="sunset" />
-
-      <RecapVideoSlot />
 
       {/* 2. Tentang Acara / Konsep */}
       <section className="section-pad block-paper" id="tentang">

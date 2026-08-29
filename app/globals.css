@@ -142,13 +142,23 @@ h1, h2 { letter-spacing: -.02em; }
 .button { background: var(--accent); color: var(--paper); }
 .button:hover { background: #3563c4; }
 .button span { color: var(--paper) !important; }
+.hero-cta {
+  align-items: center;
+  background: var(--lime);
+  box-shadow: 0 12px 30px rgba(232, 239, 105, 0.28);
+  color: var(--ink) !important;
+  position: relative;
+  transition: background .2s ease, box-shadow .25s ease, transform .25s ease;
+}
+.hero-cta:hover {
+  background: #f2f79a;
+  box-shadow: 0 16px 38px rgba(232, 239, 105, 0.4);
+  transform: translateY(-2px);
+}
+.hero-cta-arrow { transition: transform .25s ease; }
+.hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
 .recap-button { background: transparent; border-color: var(--border-light); color: var(--paper); cursor: pointer; }
 .recap-button:hover { background: rgba(243,239,230,.1); }
-
-.hero-recap-slot { background: var(--ink); padding: 40px 8vw; }
-.hero-recap-player { display: flex; flex-direction: column; gap: 14px; margin: 0 auto; max-width: 900px; }
-.hero-recap-video { border-radius: 14px; box-shadow: var(--shadow-soft-lg); max-height: 70vh; width: 100%; }
-.hero-recap-close { align-self: center; }
 .play { color: var(--lime); font-size: 12px; }
 
 .media { background-position: center; background-size: cover; border-radius: 16px; min-height: 280px; position: relative; }
@@ -832,15 +842,13 @@ h1, h2 { letter-spacing: -.02em; }
   .register .eyebrow { font-size: 10px; letter-spacing: .02em; padding: 6px 12px; }
   .hero h1 { font-size: clamp(38px, 11vw, 52px); line-height: 1.02; margin-bottom: 16px; }
   .hero-copy p { font-size: 15.5px; line-height: 1.5; max-width: 34ch; opacity: .82; }
-  .hero-actions { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 26px; }
-  .hero-actions .button, .hero-actions .recap-button {
+  .hero-actions { display: grid; gap: 10px; margin-top: 26px; }
+  .hero-actions .button {
     font-size: 14px;
     justify-content: center;
     padding: 15px 10px;
     white-space: nowrap;
   }
-  .hero-recap-slot { padding: 28px 20px; }
-  .hero-recap-video { max-height: 40vh; }
 
   .section-pad { padding: 56px 20px; }
   .section-head h2 { font-size: clamp(28px, 8vw, 38px); }

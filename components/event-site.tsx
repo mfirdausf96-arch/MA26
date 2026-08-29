@@ -272,75 +272,13 @@ export function Media({
   )
 }
 
-const RecapCtx = createContext<{ show: boolean; open: () => void; close: () => void }>({
-  show: false,
-  open: () => {},
-  close: () => {},
-})
-
-export function RecapProvider({ children }: { children: React.ReactNode }) {
-  const [show, setShow] = useState(false)
-  return (
-    <RecapCtx.Provider value={{ show, open: () => setShow(true), close: () => setShow(false) }}>
-      {children}
-    </RecapCtx.Provider>
-  )
-}
-
-export function RecapButton() {
-  const { open } = useContext(RecapCtx)
-  return (
-    <button className="recap-button" onClick={open}>
-      <span className="play">▶</span> Tonton Recap
-    </button>
-  )
-}
-
-export function RecapVideoSlot() {
-  const { show, close } = useContext(RecapCtx)
-  const { duck, unduck, playExclusive } = useSiteAudio()
-
-  if (!show) return null
-
-  return (
-    <div className="hero-recap-slot">
-      <div className="hero-recap-player">
-        <video
-          src={MEDIA.recapVideo}
-          controls
-          autoPlay
-          playsInline
-          className="hero-recap-video"
-          onPlay={(e) => {
-            playExclusive(e.currentTarget)
-            duck()
-          }}
-          onPause={unduck}
-          onEnded={unduck}
-        />
-        <button
-          className="recap-button hero-recap-close"
-          onClick={() => {
-            unduck()
-            close()
-          }}
-        >
-          Tutup video
-        </button>
-      </div>
-    </div>
-  )
-}
-
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <SiteAudioProvider>
-      <RecapProvider>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppFab />
-      </RecapProvider>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+      <WhatsAppFab />
     </SiteAudioProvider>
   )
 }

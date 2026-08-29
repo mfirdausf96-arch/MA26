@@ -6,3 +6,4 @@ asetMA/
 
 # build artifacts
 tsconfig.tsbuildinfo
+.gstack/
